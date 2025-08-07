@@ -1,64 +1,113 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PPDB Online - Formulir Siswa Baru</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      background: linear-gradient(to right, #00c6ff, #0072ff);
       color: #333;
       margin: 0;
       padding: 0;
     }
+
     header {
-      background-color: #283593;
+      background: #1b1f3b;
       color: white;
-      padding: 20px;
+      padding: 24px 16px;
       text-align: center;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     }
+
     main {
       padding: 30px;
-      max-width: 900px;
+      max-width: 960px;
       margin: auto;
     }
+
     section {
       background: white;
       padding: 25px;
       margin-bottom: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+    section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    }
+
     section h2 {
-      color: #283593;
+      color: #0072ff;
       margin-top: 0;
+      border-left: 6px solid #00c6ff;
+      padding-left: 12px;
     }
+
     label {
       display: block;
       margin: 12px 0 6px;
       font-weight: 600;
     }
+
     input, select {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border-radius: 8px;
       border: 1px solid #ccc;
+      margin-bottom: 8px;
+      transition: border 0.3s ease;
     }
+
+    input:focus, select:focus {
+      outline: none;
+      border: 1.5px solid #0072ff;
+      background: #f0faff;
+    }
+
     button {
-      margin-top: 20px;
-      background-color: #283593;
+      margin-top: 16px;
+      background: linear-gradient(to right, #0072ff, #00c6ff);
       color: white;
-      padding: 12px 20px;
+      padding: 14px 24px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
+
     button:hover {
-      background-color: #1a237e;
+      background: linear-gradient(to right, #005ae0, #00b4d8);
+      transform: scale(1.02);
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        font-size: 20px;
+        padding: 16px;
+      }
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>

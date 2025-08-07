@@ -2,196 +2,250 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PPDB Online 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PPDB Online</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #dfe9f3, #ffffff);
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #f0f4fa, #e0f7fa);
-      color: #1a2e4b;
     }
-    header {
-      background: #0077b6;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    main {
-      padding: 30px;
+    .container {
       max-width: 900px;
       margin: auto;
+      background: white;
+      padding: 20px;
+      margin-top: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
     }
-    section {
-      display: none;
-      margin-bottom: 40px;
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
     }
     input, select, button, textarea {
-      padding: 10px;
-      margin: 6px 0;
       width: 100%;
-      box-sizing: border-box;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
     }
     button {
-      background: #0077b6;
+      background: #3498db;
       color: white;
       border: none;
+      margin-top: 20px;
       cursor: pointer;
+      transition: background 0.3s;
     }
     button:hover {
-      background: #005f87;
+      background: #2980b9;
     }
-    .visible {
-      display: block;
-    }
+    .hidden { display: none; }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
     }
-    table, th, td {
-      border: 1px solid #0077b6;
-    }
     th, td {
       padding: 10px;
-      text-align: left;
+      border: 1px solid #ccc;
     }
-    .gelombang-info {
-      background: #e0f7fa;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+    .alert {
+      color: red;
+      font-size: 0.9em;
     }
-    .announcement {
-      background: #caf0f8;
-      padding: 20px;
-      border-radius: 10px;
+    .info-box {
+      background: #ecf0f1;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 5px solid #3498db;
     }
-    .contact {
+    .text-success {
+      color: green;
+      font-weight: bold;
+    }
+    .footer {
       margin-top: 30px;
-      padding: 20px;
-      background: #e6f4ff;
-      border-left: 5px solid #0077b6;
+      background: #f4f4f4;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .footer h3 {
+      margin-top: 0;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>PPDB Online 2025</h1>
-    <p>Penerimaan Peserta Didik Baru - Sekolah Unggulan</p>
-  </header>
-  <main>
-    <!-- Login -->
-    <section id="loginSection" class="visible">
-      <h2>Login Admin</h2>
-      <input type="text" id="loginUser" placeholder="Username">
-      <input type="password" id="loginPass" placeholder="Password">
-      <button onclick="login()">Login</button>
-    </section>
+  <div class="container" id="loginPage">
+    <h2>Login PPDB</h2>
+    <label>Username</label>
+    <input type="text" id="loginUser" />
+    <label>Password</label>
+    <input type="password" id="loginPass" />
+    <button onclick="login()">Login</button>
+    <p>Belum punya akun? <a href="#" onclick="showRegister()">Registrasi</a></p>
+    <p class="alert" id="loginAlert"></p>
+  </div>
 
-    <!-- Formulir -->
-    <section id="formSection">
-      <h2>Formulir Pendaftaran PPDB</h2>
-      <div class="gelombang-info">
-        <h3>Informasi Gelombang</h3>
-        <p><strong>Gelombang 1:</strong> 1 Juni - 30 Juni 2025<br>
-        Biaya: Rp500.000<br>
-        Fasilitas: Seragam, Buku Paket, Kegiatan Orientasi<br>
-        Kuota Terbatas: 100 Siswa</p>
+  <div class="container hidden" id="registerPage">
+    <h2>Registrasi Akun</h2>
+    <label>Username</label>
+    <input type="text" id="regUser" />
+    <label>Password</label>
+    <input type="password" id="regPass" />
+    <button onclick="register()">Daftar</button>
+    <p>Sudah punya akun? <a href="#" onclick="showLogin()">Login</a></p>
+    <p class="alert" id="registerAlert"></p>
+  </div>
 
-        <p><strong>Gelombang 2:</strong> 1 Juli - 31 Juli 2025<br>
-        Biaya: Rp600.000<br>
-        Fasilitas: Seragam, Buku Paket, Kegiatan Orientasi, Study Tour<br>
-        Kuota Terbatas: 75 Siswa</p>
-      </div>
-      <input type="text" id="nama" placeholder="Nama Lengkap">
-      <input type="text" id="nisn" placeholder="NISN">
-      <input type="text" id="asal" placeholder="Asal Sekolah">
-      <input type="text" id="alamat" placeholder="Alamat Lengkap">
-      <select id="gelombang">
-        <option value="">-- Pilih Gelombang --</option>
-        <option value="Gelombang 1">Gelombang 1</option>
-        <option value="Gelombang 2">Gelombang 2</option>
-      </select>
-      <button onclick="kirim()">Kirim Pendaftaran</button>
-    </section>
+  <div class="container hidden" id="formPage">
+    <h2>Formulir Pendaftaran PPDB</h2>
+    <label>Nama Lengkap</label>
+    <input type="text" id="nama" />
+    <label>NISN</label>
+    <input type="text" id="nisn" />
+    <label>Asal Sekolah</label>
+    <input type="text" id="asal" />
+    <label>Jurusan yang Dipilih</label>
+    <select id="jurusan">
+      <option value="">-- Pilih --</option>
+      <option>TKJ</option>
+      <option>RPL</option>
+      <option>MM</option>
+    </select>
+    <label>Alamat</label>
+    <textarea id="alamat"></textarea>
+    <label>Telepon</label>
+    <input type="text" id="telepon" />
+    <label>Pilih Gelombang</label>
+    <select id="gelombang">
+      <option value="">-- Pilih Gelombang --</option>
+      <option>Gelombang 1</option>
+      <option>Gelombang 2</option>
+    </select>
+    <div class="info-box" id="gelombangInfo"></div>
+    <button onclick="submitForm()">Kirim Formulir</button>
+    <p class="alert" id="formAlert"></p>
+  </div>
 
-    <!-- Informasi Pendaftar -->
-    <section id="infoSection">
-      <h2>Data Pendaftaran Anda</h2>
-      <table id="tabelData"></table>
-      <button onclick="tampilkanPengumuman()">Lihat Pengumuman Kelulusan</button>
-    </section>
+  <div class="container hidden" id="resultPage">
+    <h2>Data Pendaftaran</h2>
+    <table>
+      <tr><th>Nama</th><td id="outNama"></td></tr>
+      <tr><th>NISN</th><td id="outNISN"></td></tr>
+      <tr><th>Asal Sekolah</th><td id="outAsal"></td></tr>
+      <tr><th>Jurusan</th><td id="outJurusan"></td></tr>
+      <tr><th>Alamat</th><td id="outAlamat"></td></tr>
+      <tr><th>Telepon</th><td id="outTelepon"></td></tr>
+      <tr><th>Gelombang</th><td id="outGelombang"></td></tr>
+    </table>
+    <button onclick="showAnnouncement()">Lihat Pengumuman</button>
+  </div>
 
-    <!-- Pengumuman -->
-    <section id="pengumumanSection">
-      <div class="announcement">
-        <h2>📢 Pengumuman Kelulusan PPDB 2025</h2>
-        <p>Selamat! Anda dinyatakan <strong>LULUS</strong> sebagai peserta didik baru di Sekolah Unggulan 2025. Silakan datang ke sekolah untuk proses daftar ulang.</p>
-        <p>Daftar ulang dibuka mulai <strong>5 Agustus s.d. 15 Agustus 2025</strong> pukul 08.00–14.00 WIB.</p>
-        <p>Harap membawa fotokopi KK, Akta, dan bukti pembayaran awal sesuai gelombang.</p>
-      </div>
-
-      <div class="contact">
-        <h3>📞 Kontak Panitia PPDB</h3>
-        <p>WA: 0812-3456-7890 (Bu Rina)<br>
-        Telp: (0274) 123456<br>
-        Email: ppdb@sekolahunggulan.sch.id</p>
-
-        <h3>🏫 Tentang Sekolah</h3>
-        <p>Sekolah Unggulan merupakan institusi pendidikan berbasis karakter dan teknologi, berlokasi di pusat kota. Kami menyediakan lingkungan belajar yang nyaman dan fasilitas modern seperti laboratorium komputer, perpustakaan digital, dan kegiatan ekstrakurikuler unggulan.</p>
-      </div>
-    </section>
-  </main>
+  <div class="container hidden" id="announcementPage">
+    <h2>🎉 Pengumuman Kelulusan PPDB 🎉</h2>
+    <p class="text-success">Selamat! Anda dinyatakan <strong>LULUS</strong> seleksi PPDB.</p>
+    <p>Silakan ikuti jadwal daftar ulang mulai 1 Juli hingga 10 Juli. Bawa semua dokumen asli seperti:</p>
+    <ul>
+      <li>Fotokopi NISN & KK</li>
+      <li>Pas foto 3x4 (3 lembar)</li>
+      <li>Bukti Pendaftaran</li>
+    </ul>
+    <div class="footer">
+      <h3>Informasi Gelombang</h3>
+      <p><strong>Gelombang 1:</strong> Pendaftaran 1-15 Juni, Biaya Rp250.000, Fasilitas: Seragam, Buku Panduan, Workshop IT</p>
+      <p><strong>Gelombang 2:</strong> Pendaftaran 16-30 Juni, Biaya Rp300.000, Fasilitas: Seragam, Buku, Workshop + Sertifikat</p>
+      <h3>Kontak Panitia</h3>
+      <p>WA: 0812-3456-7890 | Email: ppdb@sekolah.sch.id</p>
+      <p>Alamat: Jl. Pendidikan No. 10, Jakarta</p>
+    </div>
+  </div>
 
   <script>
-    let userData = null;
+    let accounts = [{ username: 'admin', password: '123' }];
+
+    function showLogin() {
+      document.getElementById('loginPage').classList.remove('hidden');
+      document.getElementById('registerPage').classList.add('hidden');
+    }
+
+    function showRegister() {
+      document.getElementById('registerPage').classList.remove('hidden');
+      document.getElementById('loginPage').classList.add('hidden');
+    }
+
+    function register() {
+      let user = document.getElementById('regUser').value.trim();
+      let pass = document.getElementById('regPass').value.trim();
+      if (!user || !pass) {
+        document.getElementById('registerAlert').innerText = "Isi semua field!";
+        return;
+      }
+      accounts.push({ username: user, password: pass });
+      alert("Registrasi berhasil. Silakan login.");
+      showLogin();
+    }
 
     function login() {
-      const u = document.getElementById("loginUser").value;
-      const p = document.getElementById("loginPass").value;
-      if (u === "admin" && p === "123") {
-        document.getElementById("loginSection").classList.remove("visible");
-        document.getElementById("formSection").classList.add("visible");
+      let user = document.getElementById('loginUser').value.trim();
+      let pass = document.getElementById('loginPass').value.trim();
+      let match = accounts.find(acc => acc.username === user && acc.password === pass);
+      if (match) {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('formPage').classList.remove('hidden');
       } else {
-        alert("Username atau Password salah!");
+        document.getElementById('loginAlert').innerText = "Login gagal!";
       }
     }
 
-    function kirim() {
-      const nama = document.getElementById("nama").value;
-      const nisn = document.getElementById("nisn").value;
-      const asal = document.getElementById("asal").value;
-      const alamat = document.getElementById("alamat").value;
-      const gelombang = document.getElementById("gelombang").value;
+    document.getElementById('gelombang').addEventListener('change', function() {
+      let info = document.getElementById('gelombangInfo');
+      if (this.value === 'Gelombang 1') {
+        info.innerHTML = `<strong>Gelombang 1:</strong><br>Pendaftaran: 1-15 Juni<br>Biaya: Rp 250.000<br>Fasilitas: Seragam, Buku Panduan, Workshop IT`;
+      } else if (this.value === 'Gelombang 2') {
+        info.innerHTML = `<strong>Gelombang 2:</strong><br>Pendaftaran: 16-30 Juni<br>Biaya: Rp 300.000<br>Fasilitas: Seragam, Buku, Workshop + Sertifikat`;
+      } else {
+        info.innerHTML = '';
+      }
+    });
 
-      if (!nama || !nisn || !asal || !alamat || !gelombang) {
-        alert("Semua data wajib diisi!");
+    function submitForm() {
+      const nama = document.getElementById('nama').value.trim();
+      const nisn = document.getElementById('nisn').value.trim();
+      const asal = document.getElementById('asal').value.trim();
+      const jurusan = document.getElementById('jurusan').value;
+      const alamat = document.getElementById('alamat').value.trim();
+      const telepon = document.getElementById('telepon').value.trim();
+      const gelombang = document.getElementById('gelombang').value;
+
+      if (!nama || !nisn || !asal || !jurusan || !alamat || !telepon || !gelombang) {
+        document.getElementById('formAlert').innerText = "Harap isi semua kolom!";
         return;
       }
 
-      userData = { nama, nisn, asal, alamat, gelombang };
-      tampilkanInfo();
+      document.getElementById('formPage').classList.add('hidden');
+      document.getElementById('resultPage').classList.remove('hidden');
+
+      document.getElementById('outNama').innerText = nama;
+      document.getElementById('outNISN').innerText = nisn;
+      document.getElementById('outAsal').innerText = asal;
+      document.getElementById('outJurusan').innerText = jurusan;
+      document.getElementById('outAlamat').innerText = alamat;
+      document.getElementById('outTelepon').innerText = telepon;
+      document.getElementById('outGelombang').innerText = gelombang;
     }
 
-    function tampilkanInfo() {
-      document.getElementById("formSection").classList.remove("visible");
-      document.getElementById("infoSection").classList.add("visible");
-
-      const table = document.getElementById("tabelData");
-      table.innerHTML = `
-        <tr><th>Nama</th><td>${userData.nama}</td></tr>
-        <tr><th>NISN</th><td>${userData.nisn}</td></tr>
-        <tr><th>Asal Sekolah</th><td>${userData.asal}</td></tr>
-        <tr><th>Alamat</th><td>${userData.alamat}</td></tr>
-        <tr><th>Gelombang</th><td>${userData.gelombang}</td></tr>
-      `;
-    }
-
-    function tampilkanPengumuman() {
-      document.getElementById("infoSection").classList.remove("visible");
-      document.getElementById("pengumumanSection").classList.add("visible");
+    function showAnnouncement() {
+      document.getElementById('resultPage').classList.add('hidden');
+      document.getElementById('announcementPage').classList.remove('hidden');
     }
   </script>
 </body>

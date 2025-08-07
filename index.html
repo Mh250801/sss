@@ -89,42 +89,44 @@
 
     <section id="formulir" style="display:none">
       <h2>Formulir Pendaftaran</h2>
-      <label>Nama Lengkap</label>
-      <input type="text">
-      <label>NIK</label>
-      <input type="text">
-      <label>Tempat & Tanggal Lahir</label>
-      <input type="text">
-      <label>Jenis Kelamin</label>
-      <select><option>Laki-laki</option><option>Perempuan</option></select>
-      <label>Alamat Lengkap</label>
-      <input type="text">
-      <label>Nomor HP</label>
-      <input type="text">
-      <label>Email</label>
-      <input type="email">
-      <hr>
-      <label>Nama Ayah</label>
-      <input type="text">
-      <label>Nama Ibu</label>
-      <input type="text">
-      <label>Alamat Orang Tua</label>
-      <input type="text">
-      <label>Pekerjaan Orang Tua</label>
-      <input type="text">
-      <label>Penghasilan Bulanan</label>
-      <input type="text">
-      <label>Nomor HP Orang Tua</label>
-      <input type="text">
-      <hr>
-      <label>Data Ijazah</label>
-      <input type="text">
-      <label>Data NISN</label>
-      <input type="text">
-      <hr>
-      <label>Jurusan Pilihan</label>
-      <select><option>TKJ</option><option>RPL</option><option>MM</option><option>DKV</option></select>
-      <button>Kirim Formulir</button>
+      <form id="formPendaftaran" onsubmit="return validateForm()">
+        <label>Nama Lengkap</label>
+        <input type="text" name="nama">
+        <label>NIK</label>
+        <input type="text" name="nik">
+        <label>Tempat & Tanggal Lahir</label>
+        <input type="text" name="ttl">
+        <label>Jenis Kelamin</label>
+        <select name="jk"><option value="">-- Pilih --</option><option>Laki-laki</option><option>Perempuan</option></select>
+        <label>Alamat Lengkap</label>
+        <input type="text" name="alamat">
+        <label>Nomor HP</label>
+        <input type="text" name="hp">
+        <label>Email</label>
+        <input type="email" name="email">
+        <hr>
+        <label>Nama Ayah</label>
+        <input type="text" name="ayah">
+        <label>Nama Ibu</label>
+        <input type="text" name="ibu">
+        <label>Alamat Orang Tua</label>
+        <input type="text" name="alamat_ortu">
+        <label>Pekerjaan Orang Tua</label>
+        <input type="text" name="pekerjaan">
+        <label>Penghasilan Bulanan</label>
+        <input type="text" name="penghasilan">
+        <label>Nomor HP Orang Tua</label>
+        <input type="text" name="hp_ortu">
+        <hr>
+        <label>Data Ijazah</label>
+        <input type="text" name="ijazah">
+        <label>Data NISN</label>
+        <input type="text" name="nisn">
+        <hr>
+        <label>Jurusan Pilihan</label>
+        <select name="jurusan"><option value="">-- Pilih --</option><option>TKJ</option><option>RPL</option><option>MM</option><option>DKV</option></select>
+        <button type="submit">Kirim Formulir</button>
+      </form>
     </section>
 
     <section id="verifikasi" style="display:none">
@@ -136,11 +138,24 @@
 
   <script>
     function handleLogin() {
-      // Untuk demo, login berhasil langsung tampilkan bagian lain
       document.getElementById('login').style.display = 'none';
       document.getElementById('informasi').style.display = 'block';
       document.getElementById('formulir').style.display = 'block';
       document.getElementById('verifikasi').style.display = 'block';
+    }
+
+    function validateForm() {
+      const form = document.forms['formPendaftaran'];
+      for (let i = 0; i < form.elements.length; i++) {
+        const field = form.elements[i];
+        if (field.tagName.toLowerCase() !== 'button' && field.value.trim() === '') {
+          alert('Harap isi semua kolom dengan benar.');
+          field.focus();
+          return false;
+        }
+      }
+      alert('Formulir berhasil dikirim!');
+      return true;
     }
   </script>
 </body>

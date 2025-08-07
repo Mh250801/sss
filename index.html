@@ -75,6 +75,18 @@
       border-left: 5px solid #689f38;
       margin-top: 30px;
     }
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 0px;
+    }
+    .action-buttons button {
+      width: auto;
+      padding: 8px 16px;
+      margin-bottom: 0;
+    }
   </style>
 </head>
 <body>
@@ -143,7 +155,26 @@
       <button onclick="kirimFormulir()">Kirim Formulir</button>
     </div>
 
-    <!-- Tabel Data -->
+    <!-- Validasi Data Siswa -->
+    <div id="validasiSiswa" class="form-section hidden">
+      <h2>Validasi Data Anda</h2>
+      <div class="info">Silakan cek kembali data di bawah ini. Jika ada yang salah, klik <b>Edit Data</b>. Jika sudah benar, klik <b>Konfirmasi</b>.</div>
+      <table>
+        <tr><th>Nama</th><td id="vNama"></td></tr>
+        <tr><th>NISN</th><td id="vNISN"></td></tr>
+        <tr><th>Sekolah Asal</th><td id="vSekolah"></td></tr>
+        <tr><th>Alamat</th><td id="vAlamat"></td></tr>
+        <tr><th>Telepon</th><td id="vTelepon"></td></tr>
+        <tr><th>Jurusan</th><td id="vJurusan"></td></tr>
+        <tr><th>Gelombang</th><td id="vGelombang"></td></tr>
+      </table>
+      <div class="action-buttons">
+        <button onclick="editFormulir()">Edit Data</button>
+        <button onclick="konfirmasiData()">Konfirmasi</button>
+      </div>
+    </div>
+
+    <!-- Data Siswa -->
     <div id="dataSiswa" class="form-section hidden">
       <h2>Data Anda</h2>
       <table>
@@ -155,7 +186,10 @@
         <tr><th>Jurusan</th><td id="tJurusan"></td></tr>
         <tr><th>Gelombang</th><td id="tGelombang"></td></tr>
       </table>
-      <button onclick="lihatData()">Lihat Lagi</button>
+      <div class="action-buttons">
+        <button onclick="lihatData()">Lihat Lagi</button>
+        <button onclick="editFormulir()">Edit Data</button>
+      </div>
     </div>
 
     <!-- Pengumuman -->
@@ -181,7 +215,8 @@
   <script>
     let currentUser = null;
     const users = { admin: "123" };
-    const siswaLulus = [];
+    // Data pengumuman (siswa yang lulus)
+    let siswaLulus = JSON.parse(localStorage.getItem("siswaLulus")) || [];
 
     function toggleForms(showRegister) {
       document.getElementById("loginForm").classList.toggle("hidden", showRegister);
@@ -241,18 +276,53 @@
       const data = { nama, nisn, sekolah, alamat, telepon, jurusan, gelombang };
       localStorage.setItem("dataSiswa", JSON.stringify(data));
 
-      siswaLulus.push(nama);
-      tampilkanData(data);
-
-      const daftar = document.getElementById("daftarLulus");
-      daftar.innerHTML = "";
-      siswaLulus.forEach(n => {
-        const li = document.createElement("li");
-        li.textContent = n;
-        daftar.appendChild(li);
-      });
+      // Tampilkan validasi
+      tampilkanValidasiData(data);
 
       document.getElementById("formPendaftaran").classList.add("hidden");
+      document.getElementById("validasiSiswa").classList.remove("hidden");
+    }
+
+    function tampilkanValidasiData(data) {
+      document.getElementById("vNama").textContent = data.nama;
+      document.getElementById("vNISN").textContent = data.nisn;
+      document.getElementById("vSekolah").textContent = data.sekolah;
+      document.getElementById("vAlamat").textContent = data.alamat;
+      document.getElementById("vTelepon").textContent = data.telepon;
+      document.getElementById("vJurusan").textContent = data.jurusan;
+      document.getElementById("vGelombang").textContent = `Gelombang ${data.gelombang}`;
+    }
+
+    function editFormulir() {
+      // Ambil data dari localStorage lalu isi kembali form
+      const data = JSON.parse(localStorage.getItem("dataSiswa"));
+      if (!data) return;
+      document.getElementById("nama").value = data.nama;
+      document.getElementById("nisn").value = data.nisn;
+      document.getElementById("sekolah").value = data.sekolah;
+      document.getElementById("alamat").value = data.alamat;
+      document.getElementById("telepon").value = data.telepon;
+      document.getElementById("jurusan").value = data.jurusan;
+      document.getElementById("gelombang").value = data.gelombang;
+      showGelombangInfo();
+
+      document.getElementById("validasiSiswa").classList.add("hidden");
+      document.getElementById("dataSiswa").classList.add("hidden");
+      document.getElementById("formPendaftaran").classList.remove("hidden");
+    }
+
+    function konfirmasiData() {
+      // Setelah validasi, masukkan ke daftar lulus dan tampilkan dataSiswa & pengumuman
+      const data = JSON.parse(localStorage.getItem("dataSiswa"));
+      if (!data) return;
+      // Hanya tambahkan jika belum ada nama di daftar lulus
+      if (!siswaLulus.some(nama => nama === data.nama)) {
+        siswaLulus.push(data.nama);
+        localStorage.setItem("siswaLulus", JSON.stringify(siswaLulus));
+      }
+      tampilkanData(data);
+      tampilkanDaftarLulus();
+      document.getElementById("validasiSiswa").classList.add("hidden");
       document.getElementById("dataSiswa").classList.remove("hidden");
       document.getElementById("pengumuman").classList.remove("hidden");
     }
@@ -267,6 +337,16 @@
       document.getElementById("tGelombang").textContent = `Gelombang ${data.gelombang}`;
     }
 
+    function tampilkanDaftarLulus() {
+      const daftar = document.getElementById("daftarLulus");
+      daftar.innerHTML = "";
+      siswaLulus.forEach(n => {
+        const li = document.createElement("li");
+        li.textContent = n;
+        daftar.appendChild(li);
+      });
+    }
+
     function lihatData() {
       const data = JSON.parse(localStorage.getItem("dataSiswa"));
       if (data) {
@@ -274,9 +354,15 @@
         document.getElementById("dataSiswa").classList.remove("hidden");
         document.getElementById("pengumuman").classList.remove("hidden");
         document.getElementById("formPendaftaran").classList.add("hidden");
+        document.getElementById("validasiSiswa").classList.add("hidden");
       } else {
         alert("Data tidak ditemukan.");
       }
+    }
+
+    // Saat reload, tampilkan daftar lulus di pengumuman
+    window.onload = function() {
+      tampilkanDaftarLulus();
     }
   </script>
 </body>

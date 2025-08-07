@@ -1,113 +1,64 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PPDB Online - Formulir Siswa Baru</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
       color: #333;
       margin: 0;
       padding: 0;
     }
-
     header {
-      background: #1b1f3b;
+      background-color: #283593;
       color: white;
-      padding: 24px 16px;
+      padding: 20px;
       text-align: center;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     }
-
     main {
       padding: 30px;
-      max-width: 960px;
+      max-width: 900px;
       margin: auto;
     }
-
     section {
       background: white;
       padding: 25px;
       margin-bottom: 30px;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-
-    section:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-    }
-
     section h2 {
-      color: #0072ff;
+      color: #283593;
       margin-top: 0;
-      border-left: 6px solid #00c6ff;
-      padding-left: 12px;
     }
-
     label {
       display: block;
       margin: 12px 0 6px;
       font-weight: 600;
     }
-
     input, select {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      margin-bottom: 8px;
-      transition: border 0.3s ease;
     }
-
-    input:focus, select:focus {
-      outline: none;
-      border: 1.5px solid #0072ff;
-      background: #f0faff;
-    }
-
     button {
-      margin-top: 16px;
-      background: linear-gradient(to right, #0072ff, #00c6ff);
+      margin-top: 20px;
+      background-color: #283593;
       color: white;
-      padding: 14px 24px;
+      padding: 12px 20px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
-      font-weight: bold;
-      transition: background 0.3s ease, transform 0.2s ease;
     }
-
     button:hover {
-      background: linear-gradient(to right, #005ae0, #00b4d8);
-      transform: scale(1.02);
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #ddd;
-      margin: 20px 0;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        font-size: 20px;
-        padding: 16px;
-      }
-      button {
-        width: 100%;
-      }
+      background-color: #1a237e;
     }
   </style>
 </head>
@@ -117,16 +68,16 @@
   </header>
   <main>
 
-    <section>
+    <section id="login">
       <h2>Login / Registrasi</h2>
       <label>Username</label>
-      <input type="text" placeholder="Masukkan username">
+      <input type="text" id="username" placeholder="Masukkan username">
       <label>Password</label>
-      <input type="password" placeholder="Masukkan password">
-      <button>Masuk / Daftar</button>
+      <input type="password" id="password" placeholder="Masukkan password">
+      <button onclick="handleLogin()">Masuk / Daftar</button>
     </section>
 
-    <section>
+    <section id="informasi" style="display:none">
       <h2>Informasi Pendaftaran</h2>
       <p>Pendaftaran dibuka untuk semua jurusan dengan gelombang sesuai kalender akademik. Biaya pendaftaran bervariasi tergantung jurusan yang dipilih. Mohon siapkan data berikut sebelum mendaftar:</p>
       <ul>
@@ -136,7 +87,7 @@
       </ul>
     </section>
 
-    <section>
+    <section id="formulir" style="display:none">
       <h2>Formulir Pendaftaran</h2>
       <label>Nama Lengkap</label>
       <input type="text">
@@ -176,11 +127,21 @@
       <button>Kirim Formulir</button>
     </section>
 
-    <section>
+    <section id="verifikasi" style="display:none">
       <h2>Verifikasi dan Pengumuman</h2>
       <p>Setelah mengisi data lengkap, formulir akan diverifikasi. Jika data valid dan sesuai, Anda dapat melihat pengumuman di halaman utama. Calon siswa yang diterima akan mendapatkan notifikasi dan akses informasi lanjutan.</p>
     </section>
 
   </main>
+
+  <script>
+    function handleLogin() {
+      // Untuk demo, login berhasil langsung tampilkan bagian lain
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('informasi').style.display = 'block';
+      document.getElementById('formulir').style.display = 'block';
+      document.getElementById('verifikasi').style.display = 'block';
+    }
+  </script>
 </body>
 </html>

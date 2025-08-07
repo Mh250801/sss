@@ -1,197 +1,151 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PPDB Online - Formulir Siswa Baru</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPDB Online</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      background: linear-gradient(to right, #74ebd5, #9face6);
       color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #283593;
-      color: white;
+      line-height: 1.6;
       padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
     }
-    main {
-      padding: 30px;
-      max-width: 900px;
-      margin: auto;
-    }
+    h1, h2 { margin-bottom: 10px; }
     section {
       background: white;
-      padding: 25px;
-      margin-bottom: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-    section h2 {
-      color: #283593;
-      margin-top: 0;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     label {
       display: block;
-      margin: 12px 0 6px;
-      font-weight: 600;
+      margin-top: 10px;
+      font-weight: bold;
     }
-    input, select {
+    input, select, button, textarea {
+      margin-top: 5px;
       width: 100%;
       padding: 10px;
-      border-radius: 8px;
+      border-radius: 5px;
       border: 1px solid #ccc;
+      margin-bottom: 15px;
     }
     button {
-      margin-top: 20px;
-      background-color: #283593;
+      background: #4CAF50;
       color: white;
-      padding: 12px 20px;
       border: none;
-      border-radius: 8px;
       cursor: pointer;
-      font-size: 16px;
+      font-weight: bold;
     }
     button:hover {
-      background-color: #1a237e;
+      background: #45a049;
     }
+    #formulir, #info-siswa, #pengumuman { display: none; }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
-  <header>
-    PPDB Online - Formulir Pendaftaran Siswa Baru
-  </header>
-  <main>
 
-    <section id="login">
-      <h2>Login</h2>
-      <label>Username</label>
-      <input type="text" id="loginUsername" placeholder="Masukkan username">
-      <label>Password</label>
-      <input type="password" id="loginPassword" placeholder="Masukkan password">
-      <button onclick="loginUser()">Login</button>
-      <p>Belum punya akun? <a href="#" onclick="toggleForm('register')">Registrasi di sini</a></p>
-    </section>
+  <section id="login">
+    <h1>Login PPDB</h1>
+    <label for="username">Username</label>
+    <input type="text" id="username" required />
 
-    <section id="register" style="display:none">
-      <h2>Registrasi</h2>
-      <label>Username</label>
-      <input type="text" id="regUsername" placeholder="Buat username">
-      <label>Password</label>
-      <input type="password" id="regPassword" placeholder="Buat password">
-      <button onclick="registerUser()">Daftar</button>
-      <p>Sudah punya akun? <a href="#" onclick="toggleForm('login')">Login di sini</a></p>
-    </section>
+    <label for="password">Password</label>
+    <input type="password" id="password" required />
 
-    <section id="informasi" style="display:none">
-      <h2>Selamat Datang, <span id="userDisplay"></span>!</h2>
-      <p>Pendaftaran dibuka untuk semua jurusan dengan gelombang sesuai kalender akademik. Biaya pendaftaran bervariasi tergantung jurusan yang dipilih. Mohon siapkan data berikut sebelum mendaftar:</p>
-      <ul>
-        <li><strong>Data Siswa:</strong> Nama, NIK, TTL, Jenis Kelamin, Alamat lengkap, Nomor HP, Email</li>
-        <li><strong>Data Orang Tua:</strong> Nama Ayah & Ibu, Alamat, Pekerjaan, Penghasilan, Nomor HP</li>
-        <li><strong>Data Pendidikan:</strong> Ijazah, NISN</li>
-      </ul>
-    </section>
+    <button onclick="loginUser()">Masuk</button>
+  </section>
 
-    <section id="formulir" style="display:none">
-      <h2>Formulir Pendaftaran</h2>
-      <form id="formPendaftaran" onsubmit="return validateForm()">
-        <label>Nama Lengkap</label>
-        <input type="text" name="nama">
-        <label>NIK</label>
-        <input type="text" name="nik">
-        <label>Tempat & Tanggal Lahir</label>
-        <input type="text" name="ttl">
-        <label>Jenis Kelamin</label>
-        <select name="jk"><option value="">-- Pilih --</option><option>Laki-laki</option><option>Perempuan</option></select>
-        <label>Alamat Lengkap</label>
-        <input type="text" name="alamat">
-        <label>Nomor HP</label>
-        <input type="text" name="hp">
-        <label>Email</label>
-        <input type="email" name="email">
-        <hr>
-        <label>Nama Ayah</label>
-        <input type="text" name="ayah">
-        <label>Nama Ibu</label>
-        <input type="text" name="ibu">
-        <label>Alamat Orang Tua</label>
-        <input type="text" name="alamat_ortu">
-        <label>Pekerjaan Orang Tua</label>
-        <input type="text" name="pekerjaan">
-        <label>Penghasilan Bulanan</label>
-        <input type="text" name="penghasilan">
-        <label>Nomor HP Orang Tua</label>
-        <input type="text" name="hp_ortu">
-        <hr>
-        <label>Data Ijazah</label>
-        <input type="text" name="ijazah">
-        <label>Data NISN</label>
-        <input type="text" name="nisn">
-        <hr>
-        <label>Jurusan Pilihan</label>
-        <select name="jurusan"><option value="">-- Pilih --</option><option>TKJ</option><option>RPL</option><option>MM</option><option>DKV</option></select>
-        <button type="submit">Kirim Formulir</button>
-      </form>
-    </section>
+  <section id="formulir">
+    <h2>Formulir Pendaftaran PPDB</h2>
+    <form id="ppdbForm">
+      <label>Nama Lengkap</label>
+      <input type="text" id="nama" required />
 
-    <section id="verifikasi" style="display:none">
-      <h2>Verifikasi dan Pengumuman</h2>
-      <p>Setelah mengisi data lengkap, formulir akan diverifikasi. Jika data valid dan sesuai, Anda dapat melihat pengumuman di halaman utama. Calon siswa yang diterima akan mendapatkan notifikasi dan akses informasi lanjutan.</p>
-    </section>
+      <label>NISN</label>
+      <input type="text" id="nisn" required />
 
-  </main>
+      <label>Asal Sekolah</label>
+      <input type="text" id="asal" required />
+
+      <label>Jurusan</label>
+      <select id="jurusan" required>
+        <option value="">-- Pilih Jurusan --</option>
+        <option value="TKJ">Teknik Komputer dan Jaringan</option>
+        <option value="RPL">Rekayasa Perangkat Lunak</option>
+      </select>
+
+      <label>Alamat Lengkap</label>
+      <textarea id="alamat" rows="3" required></textarea>
+
+      <label>No HP</label>
+      <input type="text" id="telepon" required />
+
+      <button type="submit">Kirim Formulir</button>
+    </form>
+  </section>
+
+  <section id="info-siswa">
+    <h2>Selamat datang, <span id="user-nama"></span>!</h2>
+    <p><strong>Nama:</strong> <span id="val-nama"></span></p>
+    <p><strong>Asal Sekolah:</strong> <span id="val-asal"></span></p>
+    <p><strong>Jurusan Pilihan:</strong> <span id="val-jurusan"></span></p>
+    <p><strong>Alamat:</strong> <span id="val-alamat"></span></p>
+    <p><strong>No HP:</strong> <span id="val-telepon"></span></p>
+    <button onclick="tampilkanPengumuman()">Lihat Pengumuman</button>
+  </section>
+
+  <section id="pengumuman">
+    <h2>Pengumuman Kelulusan</h2>
+    <p>Selamat, Anda <strong>DITERIMA</strong> di jurusan pilihan Anda!</p>
+  </section>
 
   <script>
-    const users = JSON.parse(localStorage.getItem('users') || '{}');
-
-    function toggleForm(form) {
-      document.getElementById('login').style.display = form === 'login' ? 'block' : 'none';
-      document.getElementById('register').style.display = form === 'register' ? 'block' : 'none';
-    }
-
-    function registerUser() {
-      const username = document.getElementById('regUsername').value.trim();
-      const password = document.getElementById('regPassword').value;
-      if (!username || !password) return alert('Isi semua kolom registrasi.');
-      if (users[username]) return alert('Username sudah digunakan.');
-      users[username] = { password };
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('Registrasi berhasil! Silakan login.');
-      toggleForm('login');
-    }
-
     function loginUser() {
-      const username = document.getElementById('loginUsername').value.trim();
-      const password = document.getElementById('loginPassword').value;
-      if (!users[username] || users[username].password !== password) {
-        return alert('Username atau password salah.');
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+
+      if (user === "admin" && pass === "123") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("formulir").style.display = "block";
+      } else {
+        alert("Username atau password salah!");
       }
-      document.getElementById('login').style.display = 'none';
-      document.getElementById('register').style.display = 'none';
-      document.getElementById('informasi').style.display = 'block';
-      document.getElementById('formulir').style.display = 'block';
-      document.getElementById('verifikasi').style.display = 'block';
-      document.getElementById('userDisplay').textContent = username;
     }
 
-    function validateForm() {
-      const form = document.forms['formPendaftaran'];
-      for (let i = 0; i < form.elements.length; i++) {
-        const field = form.elements[i];
-        if (field.tagName.toLowerCase() !== 'button' && field.value.trim() === '') {
-          alert('Harap isi semua kolom dengan benar.');
-          field.focus();
-          return false;
-        }
+    document.getElementById("ppdbForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nama = document.getElementById("nama").value.trim();
+      const nisn = document.getElementById("nisn").value.trim();
+      const asal = document.getElementById("asal").value.trim();
+      const jurusan = document.getElementById("jurusan").value.trim();
+      const alamat = document.getElementById("alamat").value.trim();
+      const telepon = document.getElementById("telepon").value.trim();
+
+      if (!nama || !nisn || !asal || !jurusan || !alamat || !telepon) {
+        alert("Harap isi semua kolom formulir!");
+        return;
       }
-      alert('Formulir berhasil dikirim!');
-      return true;
+
+      document.getElementById("formulir").style.display = "none";
+      document.getElementById("info-siswa").style.display = "block";
+
+      document.getElementById("user-nama").textContent = nama;
+      document.getElementById("val-nama").textContent = nama;
+      document.getElementById("val-asal").textContent = asal;
+      document.getElementById("val-jurusan").textContent = jurusan;
+      document.getElementById("val-alamat").textContent = alamat;
+      document.getElementById("val-telepon").textContent = telepon;
+    });
+
+    function tampilkanPengumuman() {
+      document.getElementById("pengumuman").style.display = "block";
     }
   </script>
 </body>

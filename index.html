@@ -1,235 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>PPDB Sederhana</title>
-  <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/school-building.png">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <title>PPDB Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(120deg, #e0f7fa 0%, #fceabb 100%);
-      font-family: 'Montserrat', Arial, sans-serif;
-      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: #f0f4f8;
       margin: 0;
+      padding: 0;
     }
     .container {
-      max-width: 480px;
+      max-width: 540px;
       margin: 40px auto;
-      padding: 32px 28px 24px 28px;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
-      border: 1.5px solid #b2dfdb;
-      position: relative;
-      animation: fadeIn 0.7s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px);}
-      to { opacity: 1; transform: translateY(0);}
+      padding: 32px;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
     }
     h2 {
-      color: #1976d2;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 18px;
       text-align: center;
-      background: linear-gradient(90deg, #1976d2 60%, #ff9800 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #2c3e50;
+      font-size: 24px;
+      margin-bottom: 24px;
     }
-    .main-illustration {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 18px;
-    }
-    .main-illustration img {
-      width: 90px;
-      height: 90px;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px rgba(33,150,243,0.13);
-      object-fit: cover;
-      background: #e3f2fd;
-    }
-    input, select, button {
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-size: 15px;
-      border-radius: 7px;
-      border: 1px solid #b2dfdb;
-      margin-bottom: 14px;
-      padding: 10px 12px;
-      outline: none;
-      transition: border 0.2s, box-shadow 0.2s;
-    }
-    input:focus, select:focus {
-      border: 1.5px solid #1976d2;
-      background: #e3f2fd;
-      box-shadow: 0 0 0 2px #b2ebf2;
-    }
-    button {
-      background: linear-gradient(90deg, #43a047 60%, #ff9800 100%);
-      color: #fff;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 6px;
-      margin-bottom: 0;
-      box-shadow: 0 2px 8px rgba(33, 150, 243, 0.08);
-      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      justify-content: center;
-    }
-    button .btn-icon {
-      font-size: 18px;
-      margin-right: 2px;
-      vertical-align: middle;
-    }
-    button:hover {
-      background: linear-gradient(90deg, #1976d2 60%, #43a047 100%);
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 4px 16px rgba(33, 150, 243, 0.13);
-    }
-    .hidden { display: none; }
-    ul {
-      padding-left: 0;
-      list-style: none;
-      margin-bottom: 0;
-    }
-    li {
-      margin-bottom: 7px;
-      font-size: 15px;
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 14px;
       color: #333;
     }
-    li b {
-      color: #1976d2;
-      font-weight: 600;
+    input, select, button {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      box-sizing: border-box;
     }
-    hr {
+    input:focus, select:focus {
+      border-color: #1976d2;
+      outline: none;
+      background: #f0f8ff;
+    }
+    button {
+      background-color: #1976d2;
+      color: #fff;
       border: none;
-      border-top: 1.5px solid #b2dfdb;
-      margin: 18px 0 14px 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
     }
-    .info {
-      background: linear-gradient(90deg, #e3f2fd 70%, #fffde7 100%);
-      color: #1976d2;
-      border-radius: 7px;
-      padding: 10px 14px;
-      margin-bottom: 18px;
-      font-size: 15px;
-      border-left: 5px solid #ff9800;
+    button:hover {
+      background-color: #125a9e;
     }
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 16px;
+      font-size: 14px;
+      margin-bottom: 24px;
+      color: #333;
+      border-radius: 6px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+    .hidden { display: none; }
     .error {
       color: #d32f2f;
-      font-size: 14px;
-      margin-bottom: 10px;
       text-align: center;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+    ul {
+      padding-left: 16px;
+      font-size: 14px;
+      margin-top: 0;
+    }
+    ul li { margin-bottom: 8px; }
+    ul li b { color: #1976d2; }
+    hr {
+      margin: 24px 0;
+      border: none;
+      border-top: 1px solid #eee;
     }
     .success {
       color: #388e3c;
       font-size: 15px;
       text-align: center;
-      margin-bottom: 10px;
-    }
-    label {
-      font-size: 14px;
-      color: #388e3c;
-      font-weight: 600;
-      margin-bottom: 4px;
-      display: block;
-      letter-spacing: 0.2px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-    }
-    .brand-logo {
-      width: 38px;
-      height: 38px;
-      margin-right: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #1976d2 60%, #ff9800 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 22px;
-      font-weight: bold;
-      box-shadow: 0 2px 8px rgba(33, 150, 243, 0.13);
-    }
-    .brand-logo img {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      vertical-align: middle;
-      margin-right: 0;
-    }
-    .brand-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: #1976d2;
-      letter-spacing: 1px;
-    }
-    .footer {
-      text-align: center;
-      color: #888;
-      font-size: 13px;
-      margin-top: 30px;
-      margin-bottom: 10px;
-      letter-spacing: 0.5px;
+      margin-bottom: 16px;
     }
   </style>
 </head>
 <body>
+
 <div class="container" id="loginPage">
-  <div class="brand">
-    <div class="brand-logo">
-      <img src="https://img.icons8.com/color/48/000000/school-building.png" alt="logo sekolah">
-    </div>
-    <div class="brand-title">PPDB Online</div>
+  <h2>PPDB Online</h2>
+  <div class="info-box">
+    <strong>Informasi Pendaftaran:</strong><br>
+    Penerimaan Peserta Didik Baru (PPDB) dibuka untuk dua gelombang:<br>
+    - Gelombang 1: 1 - 30 Juni<br>
+    - Gelombang 2: 1 - 31 Juli<br><br>
+    Pilihan jurusan tersedia: IPA & IPS.<br>
+    Biaya pendaftaran:<br>
+    - IPA: Rp 1.000.000<br>
+    - IPS: Rp 900.000<br><br>
+    Pastikan Anda mengisi data dengan benar dan menyimpan bukti pendaftaran.
   </div>
-  <div class="main-illustration">
-    <img src="https://img.freepik.com/free-vector/flat-design-school-building-illustration_23-2148165842.jpg?w=400" alt="Ilustrasi Sekolah">
-  </div>
-  <button onclick="showPage('registerPage')"><span class="btn-icon">📝</span>Registrasi</button>
-  <button onclick="showPage('loginFormPage')"><span class="btn-icon">🔑</span>Login</button>
+  <button onclick="showPage('registerPage')">Registrasi</button>
+  <button onclick="showPage('loginFormPage')">Login</button>
 </div>
 
 <div class="container hidden" id="registerPage">
   <h2>Registrasi</h2>
-  <label for="regUsername">Username</label>
+  <label>Username</label>
   <input type="text" id="regUsername" placeholder="Username">
-  <label for="regPassword">Password</label>
+  <label>Password</label>
   <input type="password" id="regPassword" placeholder="Password">
-  <button onclick="register()"><span class="btn-icon">💾</span>Simpan & Masuk</button>
-  <button onclick="showPage('loginPage')"><span class="btn-icon">🔙</span>Kembali</button>
+  <button onclick="register()">Simpan & Masuk</button>
+  <button onclick="showPage('loginPage')">Kembali</button>
 </div>
 
 <div class="container hidden" id="loginFormPage">
   <h2>Login</h2>
-  <label for="loginUsername">Username</label>
+  <label>Username</label>
   <input type="text" id="loginUsername" placeholder="Username">
-  <label for="loginPassword">Password</label>
+  <label>Password</label>
   <input type="password" id="loginPassword" placeholder="Password">
-  <button onclick="login()"><span class="btn-icon">🔓</span>Login</button>
-  <button onclick="showPage('loginPage')"><span class="btn-icon">🔙</span>Kembali</button>
+  <button onclick="login()">Login</button>
+  <button onclick="showPage('loginPage')">Kembali</button>
   <div id="loginError" class="error"></div>
 </div>
 
 <div class="container hidden" id="mainPage">
-  <h2>Halaman Utama</h2>
-  <div class="main-illustration">
-    <img src="https://img.icons8.com/color/96/000000/graduation-cap.png" alt="Graduation Cap">
+  <h2>Selamat Datang</h2>
+  <div class="info-box">
+    Anda berhasil masuk ke sistem PPDB Online.<br><br>
+    Silakan lanjutkan dengan mengisi formulir pendaftaran dan pastikan semua data Anda sudah benar sebelum diverifikasi.
   </div>
-  <div class="info">
-    Selamat datang di <b>PPDB Online</b>! Silakan cek info pendaftaran atau logout.
-  </div>
-  <button onclick="showPage('infoPage')"><span class="btn-icon">ℹ️</span>Info Pendaftaran</button>
-  <button onclick="logout()"><span class="btn-icon">🚪</span>Logout</button>
+  <button onclick="showPage('infoPage')">Info Pendaftaran</button>
+  <button onclick="logout()">Logout</button>
 </div>
 
 <div class="container hidden" id="infoPage">
@@ -240,132 +158,117 @@
     <li>Biaya jurusan IPA: <b>Rp 1.000.000</b></li>
     <li>Biaya jurusan IPS: <b>Rp 900.000</b></li>
   </ul>
-  <button onclick="showPage('formPage')"><span class="btn-icon">📝</span>Formulir Pendaftaran</button>
-  <button onclick="showPage('mainPage')"><span class="btn-icon">🔙</span>Kembali</button>
+  <button onclick="showPage('formPage')">Formulir Pendaftaran</button>
+  <button onclick="showPage('mainPage')">Kembali</button>
 </div>
 
 <div class="container hidden" id="formPage">
   <h2>Formulir Pendaftaran</h2>
-  <label for="nama">Nama Lengkap</label>
-  <input type="text" id="nama" placeholder="Nama Lengkap">
-  <label for="nik">NIK</label>
-  <input type="text" id="nik" placeholder="NIK">
-  <label for="ttl">Tempat & Tanggal Lahir</label>
-  <input type="text" id="ttl" placeholder="Tempat & Tanggal Lahir">
-  <label for="jk">Jenis Kelamin</label>
+  <label>Nama Lengkap</label>
+  <input type="text" id="nama">
+  <label>NIK</label>
+  <input type="text" id="nik">
+  <label>Tempat & Tanggal Lahir</label>
+  <input type="text" id="ttl">
+  <label>Jenis Kelamin</label>
   <select id="jk">
-    <option value="">Pilih Jenis Kelamin</option>
+    <option value="">Pilih</option>
     <option value="Laki-laki">Laki-laki</option>
     <option value="Perempuan">Perempuan</option>
   </select>
-  <label for="alamat">Alamat Lengkap</label>
-  <input type="text" id="alamat" placeholder="Alamat Lengkap">
-  <label for="nohp">No HP Siswa</label>
-  <input type="text" id="nohp" placeholder="No HP Siswa">
-  <label for="email">Email Siswa</label>
-  <input type="email" id="email" placeholder="Email Siswa">
+  <label>Alamat Lengkap</label>
+  <input type="text" id="alamat">
+  <label>No HP Siswa</label>
+  <input type="text" id="nohp">
+  <label>Email Siswa</label>
+  <input type="email" id="email">
   <hr>
-  <label for="ayahibu"><b>Nama Ayah & Ibu</b></label>
-  <input type="text" id="ayahibu" placeholder="Nama Ayah & Ibu">
-  <label for="alamatortu">Alamat Orangtua</label>
-  <input type="text" id="alamatortu" placeholder="Alamat Orangtua">
-  <label for="pekerjaan">Pekerjaan Orangtua</label>
-  <input type="text" id="pekerjaan" placeholder="Pekerjaan Orangtua">
-  <label for="penghasilan">Penghasilan Bulanan</label>
-  <input type="text" id="penghasilan" placeholder="Penghasilan Bulanan">
-  <label for="nohp_ortu">No HP Orangtua</label>
-  <input type="text" id="nohp_ortu" placeholder="No HP Orangtua">
+  <label>Nama Ayah & Ibu</label>
+  <input type="text" id="ayahibu">
+  <label>Alamat Orangtua</label>
+  <input type="text" id="alamatortu">
+  <label>Pekerjaan Orangtua</label>
+  <input type="text" id="pekerjaan">
+  <label>Penghasilan Bulanan</label>
+  <input type="text" id="penghasilan">
+  <label>No HP Orangtua</label>
+  <input type="text" id="nohp_ortu">
   <hr>
-  <label for="ijazah"><b>Data Ijazah</b></label>
-  <input type="text" id="ijazah" placeholder="Data Ijazah">
-  <label for="nisn">Data NISN</label>
-  <input type="text" id="nisn" placeholder="Data NISN">
-  <hr>
-  <label for="jurusan"><b>Pilihan Jurusan</b></label>
+  <label>Data Ijazah</label>
+  <input type="text" id="ijazah">
+  <label>Data NISN</label>
+  <input type="text" id="nisn">
+  <label>Pilihan Jurusan</label>
   <select id="jurusan">
-    <option value="">Pilih Jurusan</option>
+    <option value="">Pilih</option>
     <option value="IPA">IPA</option>
     <option value="IPS">IPS</option>
   </select>
-  <button onclick="lanjutForm()"><span class="btn-icon">➡️</span>Lanjut</button>
-  <button onclick="showPage('infoPage')"><span class="btn-icon">🔙</span>Kembali</button>
+  <button onclick="lanjutForm()">Lanjut</button>
+  <button onclick="showPage('infoPage')">Kembali</button>
 </div>
 
 <div class="container hidden" id="confirmPage">
   <h2>Konfirmasi Data</h2>
-  <ul style="font-size:15px;">
+  <ul>
     <li><b>Nama:</b> <span id="cNama"></span></li>
     <li><b>NIK:</b> <span id="cNIK"></span></li>
     <li><b>TTL:</b> <span id="cTTL"></span></li>
     <li><b>Jenis Kelamin:</b> <span id="cJK"></span></li>
     <li><b>Alamat:</b> <span id="cAlamat"></span></li>
-    <li><b>No HP Siswa:</b> <span id="cNoHP"></span></li>
+    <li><b>No HP:</b> <span id="cNoHP"></span></li>
     <li><b>Email:</b> <span id="cEmail"></span></li>
-    <li><b>Nama Ayah & Ibu:</b> <span id="cAyahIbu"></span></li>
-    <li><b>Alamat Orangtua:</b> <span id="cAlamatOrtu"></span></li>
-    <li><b>Pekerjaan Orangtua:</b> <span id="cPekerjaan"></span></li>
-    <li><b>Penghasilan Bulanan:</b> <span id="cPenghasilan"></span></li>
-    <li><b>No HP Orangtua:</b> <span id="cNoHPOrtu"></span></li>
+    <li><b>Orangtua:</b> <span id="cAyahIbu"></span></li>
+    <li><b>Alamat Ortu:</b> <span id="cAlamatOrtu"></span></li>
+    <li><b>Pekerjaan:</b> <span id="cPekerjaan"></span></li>
+    <li><b>Penghasilan:</b> <span id="cPenghasilan"></span></li>
+    <li><b>HP Ortu:</b> <span id="cNoHPOrtu"></span></li>
     <li><b>Ijazah:</b> <span id="cIjazah"></span></li>
     <li><b>NISN:</b> <span id="cNISN"></span></li>
     <li><b>Jurusan:</b> <span id="cJurusan"></span></li>
   </ul>
-  <button onclick="verifikasi()"><span class="btn-icon">✅</span>Verifikasi</button>
-  <button onclick="kembaliForm()"><span class="btn-icon">🔙</span>Kembali</button>
+  <button onclick="verifikasi()">Verifikasi</button>
+  <button onclick="kembaliForm()">Kembali</button>
 </div>
 
 <div class="container hidden" id="resultPage">
-  <h2>Pendaftaran Berhasil!</h2>
+  <h2>Pendaftaran Berhasil</h2>
   <div class="success">Terima kasih telah mendaftar.<br>Silakan cek pengumuman penerimaan.</div>
-  <button onclick="showPage('pengumumanPage')"><span class="btn-icon">📢</span>Cek Pengumuman</button>
+  <button onclick="showPage('pengumumanPage')">Lihat Pengumuman</button>
 </div>
 
 <div class="container hidden" id="pengumumanPage">
   <h2>Pengumuman</h2>
-  <div class="success">Selamat! Calon siswa diterima.</div>
-  <button onclick="resetForm()"><span class="btn-icon">🏠</span>Kembali ke Halaman Utama</button>
+  <div class="success">Selamat! Anda diterima sebagai calon siswa.</div>
+  <button onclick="resetForm()">Kembali ke Halaman Utama</button>
 </div>
 
 <div class="footer">
-  &copy; 2025 PPDB Online | Kelas Khusus <span style="color:#ff9800;font-weight:600;">IMK</span>
+  &copy; 2025 PPDB Online | Sistem Kelas Khusus IMK
 </div>
 
 <script>
 function showPage(id) {
-  document.querySelectorAll('.container').forEach(c => c.classList.add('hidden'));
+  document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
-  // Bersihkan pesan error saat berpindah ke halaman login/registrasi
   if (id === 'loginFormPage') document.getElementById('loginError').innerText = '';
 }
-
-// Simulasi penyimpanan user
-let user = {};
-let dataPendaftar = {};
+let user = {}, dataPendaftar = {};
 
 function register() {
-  const username = document.getElementById('regUsername').value.trim();
-  const password = document.getElementById('regPassword').value.trim();
-  if (!username || !password) {
-    alert('Username dan password harus diisi!');
-    return;
-  }
-  if (username === password) {
-    alert('Username dan password tidak boleh sama!');
-    return;
-  }
-  user.username = username;
-  user.password = password;
+  const u = document.getElementById('regUsername').value.trim();
+  const p = document.getElementById('regPassword').value.trim();
+  if (!u || !p) return alert('Username dan password harus diisi!');
+  if (u === p) return alert('Username dan password tidak boleh sama!');
+  user.username = u; user.password = p;
   showPage('mainPage');
 }
 
 function login() {
-  const username = document.getElementById('loginUsername').value.trim();
-  const password = document.getElementById('loginPassword').value.trim();
-  if (!username || !password) {
-    document.getElementById('loginError').innerText = 'Username dan password harus diisi!';
-    return;
-  }
-  if (username === user.username && password === user.password) {
+  const u = document.getElementById('loginUsername').value.trim();
+  const p = document.getElementById('loginPassword').value.trim();
+  if (!u || !p) return document.getElementById('loginError').innerText = 'Harap isi semua bidang!';
+  if (u === user.username && p === user.password) {
     document.getElementById('loginError').innerText = '';
     showPage('mainPage');
   } else {
@@ -373,35 +276,15 @@ function login() {
   }
 }
 
-function logout() {
-  showPage('loginPage');
-}
+function logout() { showPage('loginPage'); }
 
 function lanjutForm() {
-  dataPendaftar.nama = document.getElementById('nama').value.trim();
-  dataPendaftar.nik = document.getElementById('nik').value.trim();
-  dataPendaftar.ttl = document.getElementById('ttl').value.trim();
-  dataPendaftar.jk = document.getElementById('jk').value.trim();
-  dataPendaftar.alamat = document.getElementById('alamat').value.trim();
-  dataPendaftar.nohp = document.getElementById('nohp').value.trim();
-  dataPendaftar.email = document.getElementById('email').value.trim();
-  dataPendaftar.ayahibu = document.getElementById('ayahibu').value.trim();
-  dataPendaftar.alamatortu = document.getElementById('alamatortu').value.trim();
-  dataPendaftar.pekerjaan = document.getElementById('pekerjaan').value.trim();
-  dataPendaftar.penghasilan = document.getElementById('penghasilan').value.trim();
-  dataPendaftar.nohp_ortu = document.getElementById('nohp_ortu').value.trim();
-  dataPendaftar.ijazah = document.getElementById('ijazah').value.trim();
-  dataPendaftar.nisn = document.getElementById('nisn').value.trim();
-  dataPendaftar.jurusan = document.getElementById('jurusan').value;
-
-  // Validasi sederhana
-  for (let key in dataPendaftar) {
-    if (!dataPendaftar[key]) {
-      alert('Semua data harus diisi!');
-      return;
-    }
+  const f = ['nama','nik','ttl','jk','alamat','nohp','email','ayahibu','alamatortu','pekerjaan','penghasilan','nohp_ortu','ijazah','nisn','jurusan'];
+  for (let i of f) {
+    const val = document.getElementById(i).value.trim();
+    if (!val) return alert('Semua data harus diisi!');
+    dataPendaftar[i] = val;
   }
-
   document.getElementById('cNama').innerText = dataPendaftar.nama;
   document.getElementById('cNIK').innerText = dataPendaftar.nik;
   document.getElementById('cTTL').innerText = dataPendaftar.ttl;
@@ -417,27 +300,13 @@ function lanjutForm() {
   document.getElementById('cIjazah').innerText = dataPendaftar.ijazah;
   document.getElementById('cNISN').innerText = dataPendaftar.nisn;
   document.getElementById('cJurusan').innerText = dataPendaftar.jurusan;
-
   showPage('confirmPage');
 }
 
 function kembaliForm() {
-  // Kembali ke form dengan data tetap terisi
-  document.getElementById('nama').value = dataPendaftar.nama || '';
-  document.getElementById('nik').value = dataPendaftar.nik || '';
-  document.getElementById('ttl').value = dataPendaftar.ttl || '';
-  document.getElementById('jk').value = dataPendaftar.jk || '';
-  document.getElementById('alamat').value = dataPendaftar.alamat || '';
-  document.getElementById('nohp').value = dataPendaftar.nohp || '';
-  document.getElementById('email').value = dataPendaftar.email || '';
-  document.getElementById('ayahibu').value = dataPendaftar.ayahibu || '';
-  document.getElementById('alamatortu').value = dataPendaftar.alamatortu || '';
-  document.getElementById('pekerjaan').value = dataPendaftar.pekerjaan || '';
-  document.getElementById('penghasilan').value = dataPendaftar.penghasilan || '';
-  document.getElementById('nohp_ortu').value = dataPendaftar.nohp_ortu || '';
-  document.getElementById('ijazah').value = dataPendaftar.ijazah || '';
-  document.getElementById('nisn').value = dataPendaftar.nisn || '';
-  document.getElementById('jurusan').value = dataPendaftar.jurusan || '';
+  for (let k in dataPendaftar) {
+    document.getElementById(k).value = dataPendaftar[k];
+  }
   showPage('formPage');
 }
 
@@ -446,16 +315,14 @@ function verifikasi() {
 }
 
 function resetForm() {
-  [
-    'nama','nik','ttl','jk','alamat','nohp','email',
-    'ayahibu','alamatortu','pekerjaan','penghasilan','nohp_ortu',
-    'ijazah','nisn','jurusan'
-  ].forEach(id => document.getElementById(id).value = '');
+  ['nama','nik','ttl','jk','alamat','nohp','email','ayahibu','alamatortu','pekerjaan','penghasilan','nohp_ortu','ijazah','nisn','jurusan']
+  .forEach(id => document.getElementById(id).value = '');
   dataPendaftar = {};
   showPage('mainPage');
 }
 
 showPage('loginPage');
 </script>
+
 </body>
 </html>

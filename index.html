@@ -1,155 +1,379 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PPDB SMK INTERAKSI MANUSIA KOMPUTER</title>
+  <!-- Google Fonts for modern look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: #f5f7fa;
-      font-family: 'Segoe UI', Arial, sans-serif;
+    :root {
+      --primary: #1a237e;
+      --secondary: #1976d2;
+      --accent: #43a047;
+      --danger: #e53935;
+      --bg: #f5f7fa;
+      --white: #fff;
+      --grey: #ededed;
+      --border: #cfd8dc;
+      --shadow: 0 4px 24px rgba(0,0,0,0.07);
+      --radius: 14px;
+      --transition: 0.25s cubic-bezier(.4,0,.2,1);
+    }
+
+    html, body {
       margin: 0;
+      padding: 0;
+      background: var(--bg);
+      font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
       color: #222;
+      min-height: 100vh;
     }
+
     .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-      padding: 32px 24px 24px 24px;
-    }
-    h1, h2, h3 {
-      color: #1a237e;
-      margin-top: 0;
-    }
-    h1 {
-      font-size: 2.3rem;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      color: #1976d2;
-      font-weight: 500;
-      margin-bottom: 18px;
-    }
-    .alert {
-      background: #ffc107;
-      color: #654200;
-      padding: 10px 16px;
-      border-radius: 6px;
-      margin-bottom: 22px;
-      font-weight: 500;
-      font-size: 1.1rem;
-    }
-    .info-section {
-      margin-bottom: 32px;
-    }
-    .gelombang {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-    .gelombang-card {
-      flex: 1;
-      background: #e3e8f0;
-      border-radius: 8px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      max-width: 1000px;
+      margin: 40px auto 20px auto;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px 24px 30px 24px;
       position: relative;
     }
+
+    h1, h2, h3 {
+      color: var(--primary);
+      margin-top: 0;
+      font-weight: 700;
+    }
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: 1.5px;
+    }
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 14px;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: var(--secondary);
+      font-weight: 600;
+      font-size: 1.15rem;
+      margin-bottom: 22px;
+    }
+
+    .alert {
+      background: #ffe082;
+      color: #654200;
+      padding: 12px 18px;
+      border-radius: 6px;
+      margin-bottom: 22px;
+      font-weight: 600;
+      font-size: 1.08rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .alert svg {
+      flex-shrink: 0;
+    }
+
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .gelombang {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .gelombang-card {
+      flex: 1 1 240px;
+      background: var(--grey);
+      border-radius: 8px;
+      padding: 20px 16px 22px 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      position: relative;
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
     .gelombang-card.disabled {
-      opacity: 0.5;
+      opacity: 0.6;
       pointer-events: none;
       background: #e0e0e0;
     }
     .gelombang-card .label {
-      background: #3949ab;
+      background: var(--primary);
       color: #fff;
-      padding: 2px 10px;
+      padding: 3px 12px;
       border-radius: 4px;
-      font-size: 0.95rem;
+      font-size: 1rem;
       position: absolute;
-      top: 18px;
-      right: 18px;
+      top: 16px;
+      right: 16px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      z-index: 2;
+    }
+    .gelombang-card .label[style*="background:#388e3c;"] {
+      background: var(--accent) !important;
+    }
+    .gelombang-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 5px;
+      color: var(--primary);
+    }
+    .gelombang-card p {
+      margin: 0 0 10px 0;
+      font-size: 1.03rem;
     }
     .jurusan-list {
       list-style: none;
       padding: 0;
       margin: 0 0 18px 0;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .jurusan-list li {
-      background: #1976d2;
+      background: var(--secondary);
       color: #fff;
       display: inline-block;
-      margin: 0 8px 8px 0;
-      padding: 6px 13px;
-      border-radius: 5px;
-      font-size: 1rem;
+      margin: 0 0 8px 0;
+      padding: 7px 18px;
+      border-radius: 6px;
+      font-size: 1.04rem;
+      font-weight: 500;
+      letter-spacing: .5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
+
     .biaya-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 14px;
       margin-bottom: 16px;
+      font-size: 1.06rem;
     }
     .biaya-table th, .biaya-table td {
-      padding: 9px 12px;
-      border: 1px solid #bdbdbd;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
     }
     .biaya-table th {
-      background: #3949ab;
+      background: var(--primary);
       color: #fff;
-      text-align: left;
+      font-weight: 600;
     }
     .biaya-table tr:nth-child(even) {
       background: #f1f1f1;
     }
-    .btn {
-      background: #1a237e;
-      color: #fff;
+
+    .btn,
+    button,
+    input[type="submit"] {
+      background: var(--primary);
+      color: var(--white);
       border: none;
       border-radius: 6px;
-      padding: 12px 32px;
-      font-size: 1.1rem;
+      padding: 12px 30px;
+      font-size: 1.06rem;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 18px;
-      transition: background 0.2s;
+      margin-top: 10px;
+      transition: background var(--transition), box-shadow var(--transition);
       text-decoration: none;
       display: inline-block;
+      box-shadow: 0 2px 12px rgba(26,35,126,0.07);
     }
-    .btn:disabled, .gelombang-card.disabled .btn {
+    .btn:disabled, button:disabled {
       background: #b0bec5;
       cursor: not-allowed;
     }
-    footer {
+    .btn.secondary,
+    button.secondary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .info {
+      background: #e0f2f1;
+      padding: 15px;
+      border-left: 5px solid var(--accent);
+      margin-bottom: 20px;
+      border-radius: 7px;
+      font-size: 1.05rem;
+    }
+    .success {
+      background: #c8e6c9;
+      padding: 20px;
+      border-left: 5px solid #388e3c;
+      border-radius: 7px;
+    }
+    .contact {
+      background: #f1f8e9;
+      padding: 15px;
+      border-left: 5px solid #689f38;
+      margin-top: 30px;
+      border-radius: 7px;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 16px;
+      margin-bottom: 0px;
+      flex-wrap: wrap;
+    }
+    .action-buttons .btn,
+    .action-buttons button {
+      margin: 0;
+      min-width: 120px;
+    }
+    .hidden { display: none !important; }
+
+    .form-section {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 28px 18px 18px 18px;
+      margin-bottom: 32px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeIn 0.45s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(35px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 500;
+      letter-spacing: .3px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 13px;
+      margin-bottom: 15px;
+      border: 1px solid #cfd8dc;
+      border-radius: 5px;
+      background: #f8fafc;
+      font-size: 1.04rem;
+      font-family: inherit;
+      transition: border-color .2s;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--secondary);
+    }
+    textarea {
+      min-height: 60px;
+      max-height: 160px;
+      resize: vertical;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      margin-bottom: 12px;
+      font-size: 1.04rem;
+    }
+    th, td {
+      padding: 8px 10px;
+      border: 1px solid #cfd8dc;
+      text-align: left;
+    }
+    td {
+      background: #fafafa;
+    }
+
+    .flex-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .flex-col {
+      flex: 1 1 300px;
+    }
+    .footer {
       margin-top: 50px;
       text-align: center;
-      color: #1976d2;
+      color: var(--secondary);
       font-weight: bold;
       letter-spacing: 1px;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
+      padding-bottom: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .container { max-width: 98vw; }
+    }
+    @media (max-width: 800px) {
+      .gelombang { flex-direction: column; gap: 18px;}
+      .flex-row { flex-direction: column;}
+      .container { padding: 16px 0 0 0;}
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0; }
+      .section, .form-section { padding: 12px 5vw; }
+      h1 { font-size: 1.3rem; }
+    }
+    /* Animations for feedback */
+    .shake {
+      animation: shake .3s linear;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0);}
+      15% { transform: translateX(-6px);}
+      35% { transform: translateX(6px);}
+      55% { transform: translateX(-4px);}
+      70% { transform: translateX(4px);}
+      100% { transform: translateX(0);}
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Header & School Info -->
     <h1>PPDB SMK INTERAKSI MANUSIA KOMPUTER</h1>
     <div class="subtitle">Penerimaan Peserta Didik Baru Tahun Ajaran 2025/2026</div>
     <div class="alert">
-      <strong>Gelombang 1 telah DITUTUP.</strong> Silakan mendaftar melalui Gelombang 2.
-    </div>
-    <div class="info-section">
-      <h2>Tentang PPDB SMK INTERAKSI MANUSIA KOMPUTER</h2>
-      <p>
-        Selamat datang di halaman resmi Penerimaan Peserta Didik Baru (PPDB) SMK INTERAKSI MANUSIA KOMPUTER. Kami berkomitmen memberikan pendidikan berkualitas tinggi di bidang teknologi informasi, dengan dukungan fasilitas modern dan tenaga pengajar profesional. PPDB tahun ajaran 2025/2026 dibuka untuk lulusan SMP/MTs/sederajat yang ingin berkembang dan siap menghadapi tantangan dunia kerja maupun dunia industri digital.
-      </p>
-      <p>
-        SMK INTERAKSI MANUSIA KOMPUTER menawarkan program keahlian yang relevan dengan kebutuhan industri masa kini, didukung pembelajaran berbasis proyek, magang industri, serta pengembangan karakter dan soft skills. Dengan bergabung bersama kami, Anda akan mendapatkan pengalaman belajar yang praktis, lingkungan yang kondusif, dan peluang karier yang luas.
-      </p>
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc107"/><path d="M12 7v5m0 4h.01" stroke="#654200" stroke-width="2" stroke-linecap="round"/></svg>
+      <span><strong>Gelombang 1 telah DITUTUP.</strong> Silakan mendaftar melalui Gelombang 2.</span>
     </div>
 
-    <div class="info-section">
+    <div class="section info-section">
+      <h2>Tentang PPDB & SMK IMK</h2>
+      <div class="flex-row">
+        <div class="flex-col">
+          <p>
+            Selamat datang di halaman resmi Penerimaan Peserta Didik Baru (PPDB) SMK INTERAKSI MANUSIA KOMPUTER.
+            Kami berkomitmen memberikan pendidikan berkualitas tinggi di bidang teknologi informasi, desain, dan multimedia.
+          </p>
+          <p>
+            SMK INTERAKSI MANUSIA KOMPUTER menawarkan program keahlian relevan dengan kebutuhan industri masa kini, didukung pembelajaran berbasis proyek, magang industri,
+            serta pengembangan karakter profesional.
+          </p>
+        </div>
+        <div class="flex-col" style="min-width:210px;max-width:300px;">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=cover&w=400&q=80" alt="SMK IMK" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(26,35,126,0.07);" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="section info-section">
       <h2>Pilihan Gelombang Pendaftaran</h2>
       <div class="gelombang">
         <div class="gelombang-card disabled">
@@ -162,12 +386,12 @@
           <div class="label" style="background:#388e3c;">Dibuka</div>
           <h3>Gelombang 2</h3>
           <p>Periode: 1 Juli 2025 - 31 Agustus 2025</p>
-          <a class="btn" href="#">Daftar Sekarang</a>
+          <a class="btn secondary" href="#" onclick="backToMain();event.preventDefault();">Daftar Sekarang</a>
         </div>
       </div>
     </div>
 
-    <div class="info-section">
+    <div class="section info-section">
       <h2>Jurusan yang Tersedia</h2>
       <ul class="jurusan-list">
         <li>Rekayasa Perangkat Lunak (RPL)</li>
@@ -178,7 +402,7 @@
       </ul>
     </div>
 
-    <div class="info-section">
+    <div class="section info-section">
       <h2>Estimasi Biaya Pendidikan</h2>
       <table class="biaya-table">
         <thead>
@@ -226,7 +450,7 @@
       </p>
     </div>
 
-    <div class="info-section">
+    <div class="section info-section">
       <h2>Persyaratan Umum Pendaftaran</h2>
       <ul>
         <li>Fotokopi ijazah/SKHU SMP/MTs sederajat</li>
@@ -237,7 +461,202 @@
       </ul>
     </div>
 
-    <div class="info-section">
+    <!-- ====== PPDB Online Application (One Page SPA) ====== -->
+    <div id="mainPage" class="form-section">
+      <h2>Formulir PPDB Online</h2>
+      <div class="info">
+        Silakan login untuk melakukan pengisian data PPDB. Jika belum memiliki akun, silakan registrasi terlebih dahulu.
+      </div>
+      <div class="action-buttons">
+        <button class="btn" onclick="showLogin()">Login</button>
+        <button class="btn secondary" onclick="showRegister()">Registrasi</button>
+      </div>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm" class="form-section hidden">
+      <h2>Login Akun PPDB</h2>
+      <label for="loginUsername">Username:</label>
+      <input type="text" id="loginUsername" autocomplete="username">
+
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" autocomplete="current-password">
+
+      <div class="action-buttons">
+        <button class="btn" onclick="loginUser()">Login</button>
+      </div>
+      <p style="text-align:center;">Belum punya akun?
+        <a href="#" onclick="toggleForms(true)">Registrasi</a>
+      </p>
+      <p style="text-align:center;">
+        <a href="#" onclick="backToMain()">Kembali ke Beranda</a>
+      </p>
+    </div>
+
+    <!-- Registrasi Form -->
+    <div id="registerForm" class="form-section hidden">
+      <h2>Registrasi Akun Baru</h2>
+      <label for="regUsername">Username:</label>
+      <input type="text" id="regUsername" autocomplete="username">
+
+      <label for="regPassword">Password:</label>
+      <input type="password" id="regPassword" autocomplete="new-password">
+
+      <div class="action-buttons">
+        <button class="btn secondary" onclick="registerUser()">Daftar</button>
+      </div>
+      <p style="text-align:center;">Sudah punya akun?
+        <a href="#" onclick="toggleForms(false)">Login</a>
+      </p>
+      <p style="text-align:center;">
+        <a href="#" onclick="backToMain()">Kembali ke Beranda</a>
+      </p>
+    </div>
+
+    <!-- Formulir Data Siswa -->
+    <div id="formSiswa" class="form-section hidden">
+      <h2>Data Siswa</h2>
+      <label>Nama Lengkap:</label>
+      <input type="text" id="s_nama">
+
+      <label>NIK:</label>
+      <input type="text" id="s_nik">
+
+      <label>Tempat Lahir:</label>
+      <input type="text" id="s_tempat_lahir">
+
+      <label>Tanggal Lahir:</label>
+      <input type="date" id="s_tanggal_lahir">
+
+      <label>Jenis Kelamin:</label>
+      <select id="s_jk">
+        <option value="">Pilih</option>
+        <option value="Laki-laki">Laki-laki</option>
+        <option value="Perempuan">Perempuan</option>
+      </select>
+
+      <label>Alamat Lengkap:</label>
+      <textarea id="s_alamat"></textarea>
+
+      <label>Nomor HP Siswa:</label>
+      <input type="text" id="s_hp">
+
+      <label>Email Siswa:</label>
+      <input type="email" id="s_email">
+
+      <label>Data Ijazah:</label>
+      <input type="text" id="s_ijazah" placeholder="Nomor Ijazah">
+
+      <label>NISN:</label>
+      <input type="text" id="s_nisn">
+
+      <label>Asal Sekolah:</label>
+      <input type="text" id="s_sekolah">
+
+      <div class="action-buttons">
+        <button class="btn secondary" onclick="simpanSiswa()">Lanjut Data Orang Tua</button>
+      </div>
+    </div>
+
+    <!-- Formulir Data Orang Tua -->
+    <div id="formOrtu" class="form-section hidden">
+      <h2>Data Orang Tua</h2>
+      <label>Nama Orang Tua:</label>
+      <input type="text" id="o_nama">
+
+      <label>Alamat Orang Tua:</label>
+      <textarea id="o_alamat"></textarea>
+
+      <label>Tanggal Lahir Orang Tua:</label>
+      <input type="date" id="o_tanggal_lahir">
+
+      <label>Pekerjaan:</label>
+      <input type="text" id="o_pekerjaan">
+
+      <label>Penghasilan Perbulan (Rp):</label>
+      <input type="number" id="o_penghasilan">
+
+      <label>Nomor HP Orang Tua:</label>
+      <input type="text" id="o_hp">
+
+      <div class="action-buttons">
+        <button class="btn" onclick="backToSiswa()">Kembali</button>
+        <button class="btn secondary" onclick="simpanOrtu()">Lanjut Validasi</button>
+      </div>
+    </div>
+
+    <!-- Validasi Data -->
+    <div id="validasiData" class="form-section hidden">
+      <h2>Validasi Data</h2>
+      <div class="info">Silakan cek kembali data berikut. Jika ada yang salah, klik Edit. Jika sudah benar, klik Konfirmasi.</div>
+      <h3>Data Siswa</h3>
+      <table>
+        <tr><th>Nama Lengkap</th><td id="v_s_nama"></td></tr>
+        <tr><th>NIK</th><td id="v_s_nik"></td></tr>
+        <tr><th>Tempat, Tanggal Lahir</th><td id="v_s_tempat_lahir"></td></tr>
+        <tr><th>Jenis Kelamin</th><td id="v_s_jk"></td></tr>
+        <tr><th>Alamat Lengkap</th><td id="v_s_alamat"></td></tr>
+        <tr><th>Nomor HP Siswa</th><td id="v_s_hp"></td></tr>
+        <tr><th>Email Siswa</th><td id="v_s_email"></td></tr>
+        <tr><th>Data Ijazah</th><td id="v_s_ijazah"></td></tr>
+        <tr><th>NISN</th><td id="v_s_nisn"></td></tr>
+        <tr><th>Asal Sekolah</th><td id="v_s_sekolah"></td></tr>
+      </table>
+      <h3>Data Orang Tua</h3>
+      <table>
+        <tr><th>Nama Orang Tua</th><td id="v_o_nama"></td></tr>
+        <tr><th>Alamat Orang Tua</th><td id="v_o_alamat"></td></tr>
+        <tr><th>Tanggal Lahir</th><td id="v_o_tanggal_lahir"></td></tr>
+        <tr><th>Pekerjaan</th><td id="v_o_pekerjaan"></td></tr>
+        <tr><th>Penghasilan Perbulan</th><td id="v_o_penghasilan"></td></tr>
+        <tr><th>Nomor HP Orang Tua</th><td id="v_o_hp"></td></tr>
+      </table>
+      <div class="action-buttons">
+        <button class="btn" onclick="editData()">Edit</button>
+        <button class="btn secondary" onclick="konfirmasiData()">Konfirmasi</button>
+      </div>
+    </div>
+
+    <!-- Pengumuman (Hanya data siswa) -->
+    <div id="pengumuman" class="form-section hidden">
+      <h2>Pengumuman Data Siswa</h2>
+      <div class="success">
+        <p>Berikut data Anda yang telah terdaftar:</p>
+        <table>
+          <tr><th>Nama Lengkap</th><td id="p_s_nama"></td></tr>
+          <tr><th>NIK</th><td id="p_s_nik"></td></tr>
+          <tr><th>Tempat, Tanggal Lahir</th><td id="p_s_tempat_lahir"></td></tr>
+          <tr><th>Jenis Kelamin</th><td id="p_s_jk"></td></tr>
+          <tr><th>Alamat Lengkap</th><td id="p_s_alamat"></td></tr>
+          <tr><th>Nomor HP Siswa</th><td id="p_s_hp"></td></tr>
+          <tr><th>Email Siswa</th><td id="p_s_email"></td></tr>
+          <tr><th>Data Ijazah</th><td id="p_s_ijazah"></td></tr>
+          <tr><th>NISN</th><td id="p_s_nisn"></td></tr>
+          <tr><th>Asal Sekolah</th><td id="p_s_sekolah"></td></tr>
+        </table>
+        <div class="action-buttons">
+          <button class="btn secondary" onclick="lihatStatus()">Lihat Status Kelulusan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Halaman Status Kelulusan -->
+    <div id="statusKelulusan" class="form-section hidden">
+      <h2>Status Kelulusan</h2>
+      <div class="info" id="kelulusanInfo"></div>
+      <div class="contact">
+        <h3>Informasi & Kontak Panitia</h3>
+        <p>📍 Alamat: Jl. Teknologi No. 123, Yogyakarta</p>
+        <p>📞 Telp: 0812-3456-7890</p>
+        <p>✉️ Email: info@smkimk.sch.id</p>
+        <p>🌐 Website: www.smkimk.sch.id</p>
+      </div>
+      <div class="action-buttons">
+        <button class="btn" onclick="backToMain()">Kembali ke Beranda</button>
+      </div>
+    </div>
+
+    <div class="section info-section contact" style="margin-top:36px;">
       <h2>Kontak & Informasi</h2>
       <p>
         Untuk informasi lebih lanjut, silakan hubungi:<br>
@@ -247,8 +666,220 @@
       </p>
     </div>
   </div>
-  <footer>
-    Powered by kelas ANAK UTY
-  </footer>
+  <div class="footer">
+    Powered by kelas ANAK UTY &mdash; &copy; 2025 SMK INTERAKSI MANUSIA KOMPUTER
+  </div>
+  <script>
+    // Simulasi user login
+    let currentUser = null;
+    const users = { admin: "123" };
+
+    // Data status kelulusan dummy
+    function cekKelulusan(nama) {
+      const namaLulus = ["Budi", "Siti", "Joko"];
+      return namaLulus.map(n => n.toLowerCase()).includes(nama.toLowerCase());
+    }
+
+    // Navigasi halaman
+    function showLogin() {
+      hideAll();
+      document.getElementById("loginForm").classList.remove("hidden");
+      document.getElementById("loginUsername").focus();
+    }
+    function showRegister() {
+      hideAll();
+      document.getElementById("registerForm").classList.remove("hidden");
+      document.getElementById("regUsername").focus();
+    }
+    function backToMain() {
+      hideAll();
+      document.getElementById("mainPage").classList.remove("hidden");
+      window.scrollTo({top:0, behavior: "smooth"});
+    }
+    function hideAll() {
+      [
+        "mainPage","loginForm","registerForm","formSiswa","formOrtu",
+        "validasiData","pengumuman","statusKelulusan"
+      ].forEach(id=>document.getElementById(id).classList.add("hidden"));
+    }
+    function toggleForms(showRegister) {
+      document.getElementById("loginForm").classList.toggle("hidden", showRegister);
+      document.getElementById("registerForm").classList.toggle("hidden", !showRegister);
+      if (showRegister) document.getElementById("regUsername").focus();
+      else document.getElementById("loginUsername").focus();
+    }
+
+    // LOGIN & REGISTER
+    function loginUser() {
+      const user = document.getElementById("loginUsername");
+      const pass = document.getElementById("loginPassword");
+      if (users[user.value] === pass.value) {
+        currentUser = user.value;
+        startFormulir();
+      } else {
+        user.classList.add("shake");
+        pass.classList.add("shake");
+        setTimeout(()=>{user.classList.remove("shake"); pass.classList.remove("shake");}, 500);
+        alert("Username atau password salah!");
+      }
+    }
+    function registerUser() {
+      const user = document.getElementById("regUsername");
+      const pass = document.getElementById("regPassword");
+      if (user.value && pass.value) {
+        if (users[user.value]) {
+          alert("Username sudah terdaftar!");
+          user.classList.add("shake");
+          setTimeout(()=>user.classList.remove("shake"), 500);
+          return;
+        }
+        users[user.value] = pass.value;
+        alert("Registrasi berhasil. Silakan login.");
+        toggleForms(false);
+      } else {
+        if (!user.value) user.classList.add("shake");
+        if (!pass.value) pass.classList.add("shake");
+        setTimeout(()=>{user.classList.remove("shake"); pass.classList.remove("shake");}, 500);
+        alert("Semua kolom wajib diisi!");
+      }
+    }
+    function startFormulir() {
+      hideAll();
+      document.getElementById("formSiswa").classList.remove("hidden");
+    }
+
+    // DATA SISWA
+    function simpanSiswa() {
+      const s_nama = document.getElementById("s_nama").value.trim();
+      const s_nik = document.getElementById("s_nik").value.trim();
+      const s_tempat_lahir = document.getElementById("s_tempat_lahir").value.trim();
+      const s_tanggal_lahir = document.getElementById("s_tanggal_lahir").value;
+      const s_jk = document.getElementById("s_jk").value;
+      const s_alamat = document.getElementById("s_alamat").value.trim();
+      const s_hp = document.getElementById("s_hp").value.trim();
+      const s_email = document.getElementById("s_email").value.trim();
+      const s_ijazah = document.getElementById("s_ijazah").value.trim();
+      const s_nisn = document.getElementById("s_nisn").value.trim();
+      const s_sekolah = document.getElementById("s_sekolah").value.trim();
+      if (!s_nama || !s_nik || !s_tempat_lahir || !s_tanggal_lahir || !s_jk || !s_alamat || !s_hp || !s_email || !s_ijazah || !s_nisn || !s_sekolah) {
+        alert("Semua kolom wajib diisi!");
+        return;
+      }
+      const dataSiswa = {
+        s_nama, s_nik, s_tempat_lahir, s_tanggal_lahir, s_jk, s_alamat, s_hp, s_email, s_ijazah, s_nisn, s_sekolah
+      };
+      localStorage.setItem("dataSiswa", JSON.stringify(dataSiswa));
+      hideAll();
+      document.getElementById("formOrtu").classList.remove("hidden");
+    }
+    function backToSiswa() {
+      hideAll();
+      document.getElementById("formSiswa").classList.remove("hidden");
+    }
+
+    // DATA ORANG TUA
+    function simpanOrtu() {
+      const o_nama = document.getElementById("o_nama").value.trim();
+      const o_alamat = document.getElementById("o_alamat").value.trim();
+      const o_tanggal_lahir = document.getElementById("o_tanggal_lahir").value;
+      const o_pekerjaan = document.getElementById("o_pekerjaan").value.trim();
+      const o_penghasilan = document.getElementById("o_penghasilan").value.trim();
+      const o_hp = document.getElementById("o_hp").value.trim();
+      if (!o_nama || !o_alamat || !o_tanggal_lahir || !o_pekerjaan || !o_penghasilan || !o_hp) {
+        alert("Semua kolom wajib diisi!");
+        return;
+      }
+      const dataOrtu = {
+        o_nama, o_alamat, o_tanggal_lahir, o_pekerjaan, o_penghasilan, o_hp
+      };
+      localStorage.setItem("dataOrtu", JSON.stringify(dataOrtu));
+      tampilValidasi();
+    }
+
+    // VALIDASI
+    function tampilValidasi() {
+      hideAll();
+      document.getElementById("validasiData").classList.remove("hidden");
+      const s = JSON.parse(localStorage.getItem("dataSiswa")) || {};
+      const o = JSON.parse(localStorage.getItem("dataOrtu")) || {};
+      // Siswa
+      document.getElementById("v_s_nama").textContent = s.s_nama||"";
+      document.getElementById("v_s_nik").textContent = s.s_nik||"";
+      document.getElementById("v_s_tempat_lahir").textContent = (s.s_tempat_lahir||"") + ', ' + (s.s_tanggal_lahir||"");
+      document.getElementById("v_s_jk").textContent = s.s_jk||"";
+      document.getElementById("v_s_alamat").textContent = s.s_alamat||"";
+      document.getElementById("v_s_hp").textContent = s.s_hp||"";
+      document.getElementById("v_s_email").textContent = s.s_email||"";
+      document.getElementById("v_s_ijazah").textContent = s.s_ijazah||"";
+      document.getElementById("v_s_nisn").textContent = s.s_nisn||"";
+      document.getElementById("v_s_sekolah").textContent = s.s_sekolah||"";
+      // Orang tua
+      document.getElementById("v_o_nama").textContent = o.o_nama||"";
+      document.getElementById("v_o_alamat").textContent = o.o_alamat||"";
+      document.getElementById("v_o_tanggal_lahir").textContent = o.o_tanggal_lahir||"";
+      document.getElementById("v_o_pekerjaan").textContent = o.o_pekerjaan||"";
+      document.getElementById("v_o_penghasilan").textContent = o.o_penghasilan||"";
+      document.getElementById("v_o_hp").textContent = o.o_hp||"";
+    }
+    function editData() {
+      hideAll();
+      document.getElementById("formSiswa").classList.remove("hidden");
+      // Prefill data siswa
+      const s = JSON.parse(localStorage.getItem("dataSiswa")) || {};
+      document.getElementById("s_nama").value = s.s_nama||"";
+      document.getElementById("s_nik").value = s.s_nik||"";
+      document.getElementById("s_tempat_lahir").value = s.s_tempat_lahir||"";
+      document.getElementById("s_tanggal_lahir").value = s.s_tanggal_lahir||"";
+      document.getElementById("s_jk").value = s.s_jk||"";
+      document.getElementById("s_alamat").value = s.s_alamat||"";
+      document.getElementById("s_hp").value = s.s_hp||"";
+      document.getElementById("s_email").value = s.s_email||"";
+      document.getElementById("s_ijazah").value = s.s_ijazah||"";
+      document.getElementById("s_nisn").value = s.s_nisn||"";
+      document.getElementById("s_sekolah").value = s.s_sekolah||"";
+      // Prefill data ortu disaat pindah ke form ortu
+      setTimeout(()=>{
+        const o = JSON.parse(localStorage.getItem("dataOrtu")) || {};
+        document.getElementById("o_nama").value = o.o_nama||"";
+        document.getElementById("o_alamat").value = o.o_alamat||"";
+        document.getElementById("o_tanggal_lahir").value = o.o_tanggal_lahir||"";
+        document.getElementById("o_pekerjaan").value = o.o_pekerjaan||"";
+        document.getElementById("o_penghasilan").value = o.o_penghasilan||"";
+        document.getElementById("o_hp").value = o.o_hp||"";
+      }, 300);
+    }
+    function konfirmasiData() {
+      hideAll();
+      document.getElementById("pengumuman").classList.remove("hidden");
+      const s = JSON.parse(localStorage.getItem("dataSiswa")) || {};
+      document.getElementById("p_s_nama").textContent = s.s_nama||"";
+      document.getElementById("p_s_nik").textContent = s.s_nik||"";
+      document.getElementById("p_s_tempat_lahir").textContent = (s.s_tempat_lahir||"") + ', ' + (s.s_tanggal_lahir||"");
+      document.getElementById("p_s_jk").textContent = s.s_jk||"";
+      document.getElementById("p_s_alamat").textContent = s.s_alamat||"";
+      document.getElementById("p_s_hp").textContent = s.s_hp||"";
+      document.getElementById("p_s_email").textContent = s.s_email||"";
+      document.getElementById("p_s_ijazah").textContent = s.s_ijazah||"";
+      document.getElementById("p_s_nisn").textContent = s.s_nisn||"";
+      document.getElementById("p_s_sekolah").textContent = s.s_sekolah||"";
+    }
+
+    // Status Kelulusan
+    function lihatStatus() {
+      hideAll();
+      document.getElementById("statusKelulusan").classList.remove("hidden");
+      const s = JSON.parse(localStorage.getItem("dataSiswa")) || {};
+      if (cekKelulusan(s.s_nama||"")) {
+        document.getElementById("kelulusanInfo").innerHTML = `<strong style="color:var(--accent);">Selamat!</strong> Anda dinyatakan <b>LULUS</b> seleksi PPDB tahun ini.`;
+      } else {
+        document.getElementById("kelulusanInfo").innerHTML = `<strong style="color:var(--danger);">Mohon Maaf</strong>, Anda <b>TIDAK LULUS</b> seleksi PPDB tahun ini.`;
+      }
+    }
+
+    // Saat reload, tampilkan halaman utama
+    window.onload = function() {
+      backToMain();
+    }
+  </script>
 </body>
 </html>

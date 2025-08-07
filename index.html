@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PPDB Online - Satu Halaman</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -48,12 +46,8 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    button:hover {
-      background: #004d40;
-    }
-    .hidden {
-      display: none;
-    }
+    button:hover { background: #004d40; }
+    .hidden { display: none; }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -86,7 +80,8 @@
 <body>
   <div class="container">
     <h1>PPDB Online</h1>
-    
+
+    <!-- Login Form -->
     <div id="loginForm" class="form-section">
       <h2>Login</h2>
       <label for="loginUsername">Username:</label>
@@ -99,6 +94,7 @@
       <p>Belum punya akun? <a href="#" onclick="toggleForms(true)">Registrasi</a></p>
     </div>
 
+    <!-- Registrasi Form -->
     <div id="registerForm" class="form-section hidden">
       <h2>Registrasi</h2>
       <label for="regUsername">Username:</label>
@@ -111,6 +107,7 @@
       <p>Sudah punya akun? <a href="#" onclick="toggleForms(false)">Login</a></p>
     </div>
 
+    <!-- Formulir Pendaftaran -->
     <div id="formPendaftaran" class="form-section hidden">
       <h2>Formulir Pendaftaran</h2>
       <label>Nama Lengkap:</label>
@@ -146,8 +143,9 @@
       <button onclick="kirimFormulir()">Kirim Formulir</button>
     </div>
 
+    <!-- Tabel Data -->
     <div id="dataSiswa" class="form-section hidden">
-      <h2>Data Pendaftaran</h2>
+      <h2>Data Anda</h2>
       <table>
         <tr><th>Nama</th><td id="tNama"></td></tr>
         <tr><th>NISN</th><td id="tNISN"></td></tr>
@@ -157,8 +155,10 @@
         <tr><th>Jurusan</th><td id="tJurusan"></td></tr>
         <tr><th>Gelombang</th><td id="tGelombang"></td></tr>
       </table>
+      <button onclick="lihatData()">Lihat Lagi</button>
     </div>
 
+    <!-- Pengumuman -->
     <div id="pengumuman" class="form-section hidden">
       <h2>Pengumuman Kelulusan</h2>
       <div class="success">
@@ -172,11 +172,10 @@
         <p>📞 Telp: 0812-3456-7890</p>
         <p>✉️ Email: ppdb@sekolah.sch.id</p>
         <p>🌐 Website: www.sekolah.sch.id</p>
-        <p><strong>PPDB Gelombang 1:</strong> Dibuka dari 1 Mei - 30 Juni. Biaya awal lebih murah, kuota terbatas, prioritas jalur prestasi.</p>
-        <p><strong>PPDB Gelombang 2:</strong> 1 Juli - 31 Agustus. Kuota sisa, tetap terbuka untuk semua jalur.</p>
+        <p><strong>PPDB Gelombang 1:</strong> 1 Mei - 30 Juni. Biaya lebih murah, kuota terbatas, prioritas prestasi.</p>
+        <p><strong>PPDB Gelombang 2:</strong> 1 Juli - 31 Agustus. Kuota sisa, terbuka untuk semua jalur.</p>
       </div>
     </div>
-
   </div>
 
   <script>
@@ -196,6 +195,10 @@
         currentUser = user;
         document.getElementById("loginForm").classList.add("hidden");
         document.getElementById("formPendaftaran").classList.remove("hidden");
+
+        // Jika ada data sebelumnya, tampilkan
+        const data = JSON.parse(localStorage.getItem("dataSiswa"));
+        if (data) tampilkanData(data);
       } else {
         alert("Username atau password salah!");
       }
@@ -206,7 +209,7 @@
       const pass = document.getElementById("regPassword").value;
       if (user && pass) {
         users[user] = pass;
-        alert("Berhasil registrasi . Silakan login.");
+        alert("Registrasi berhasil. Silakan login.");
         toggleForms(false);
       } else {
         alert("Semua kolom wajib diisi!");
@@ -214,13 +217,11 @@
     }
 
     function showGelombangInfo() {
-      const info = document.getElementById("gelombang").value;
+      const val = document.getElementById("gelombang").value;
       const el = document.getElementById("gelombangInfo");
-      if (info === "1") {
-        el.innerHTML = `<strong>Gelombang 1:</strong> 1 Mei - 30 Juni. Biaya masuk lebih ringan, jalur prestasi, kuota terbatas.`;
-      } else {
-        el.innerHTML = `<strong>Gelombang 2:</strong> 1 Juli - 31 Agustus. Jalur reguler, kuota tergantung sisa.`;
-      }
+      el.innerHTML = val === "1"
+        ? "<strong>Gelombang 1:</strong> 1 Mei - 30 Juni. Biaya masuk lebih ringan, jalur prestasi, kuota terbatas."
+        : "<strong>Gelombang 2:</strong> 1 Juli - 31 Agustus. Jalur reguler, kuota tergantung sisa.";
     }
 
     function kirimFormulir() {
@@ -237,19 +238,11 @@
         return;
       }
 
+      const data = { nama, nisn, sekolah, alamat, telepon, jurusan, gelombang };
+      localStorage.setItem("dataSiswa", JSON.stringify(data));
+
       siswaLulus.push(nama);
-
-      document.getElementById("formPendaftaran").classList.add("hidden");
-      document.getElementById("dataSiswa").classList.remove("hidden");
-      document.getElementById("pengumuman").classList.remove("hidden");
-
-      document.getElementById("tNama").textContent = nama;
-      document.getElementById("tNISN").textContent = nisn;
-      document.getElementById("tSekolah").textContent = sekolah;
-      document.getElementById("tAlamat").textContent = alamat;
-      document.getElementById("tTelepon").textContent = telepon;
-      document.getElementById("tJurusan").textContent = jurusan;
-      document.getElementById("tGelombang").textContent = `Gelombang ${gelombang}`;
+      tampilkanData(data);
 
       const daftar = document.getElementById("daftarLulus");
       daftar.innerHTML = "";
@@ -258,6 +251,32 @@
         li.textContent = n;
         daftar.appendChild(li);
       });
+
+      document.getElementById("formPendaftaran").classList.add("hidden");
+      document.getElementById("dataSiswa").classList.remove("hidden");
+      document.getElementById("pengumuman").classList.remove("hidden");
+    }
+
+    function tampilkanData(data) {
+      document.getElementById("tNama").textContent = data.nama;
+      document.getElementById("tNISN").textContent = data.nisn;
+      document.getElementById("tSekolah").textContent = data.sekolah;
+      document.getElementById("tAlamat").textContent = data.alamat;
+      document.getElementById("tTelepon").textContent = data.telepon;
+      document.getElementById("tJurusan").textContent = data.jurusan;
+      document.getElementById("tGelombang").textContent = `Gelombang ${data.gelombang}`;
+    }
+
+    function lihatData() {
+      const data = JSON.parse(localStorage.getItem("dataSiswa"));
+      if (data) {
+        tampilkanData(data);
+        document.getElementById("dataSiswa").classList.remove("hidden");
+        document.getElementById("pengumuman").classList.remove("hidden");
+        document.getElementById("formPendaftaran").classList.add("hidden");
+      } else {
+        alert("Data tidak ditemukan.");
+      }
     }
   </script>
 </body>

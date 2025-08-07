@@ -69,16 +69,27 @@
   <main>
 
     <section id="login">
-      <h2>Login / Registrasi</h2>
+      <h2>Login</h2>
       <label>Username</label>
-      <input type="text" id="username" placeholder="Masukkan username">
+      <input type="text" id="loginUsername" placeholder="Masukkan username">
       <label>Password</label>
-      <input type="password" id="password" placeholder="Masukkan password">
-      <button onclick="handleLogin()">Masuk / Daftar</button>
+      <input type="password" id="loginPassword" placeholder="Masukkan password">
+      <button onclick="loginUser()">Login</button>
+      <p>Belum punya akun? <a href="#" onclick="toggleForm('register')">Registrasi di sini</a></p>
+    </section>
+
+    <section id="register" style="display:none">
+      <h2>Registrasi</h2>
+      <label>Username</label>
+      <input type="text" id="regUsername" placeholder="Buat username">
+      <label>Password</label>
+      <input type="password" id="regPassword" placeholder="Buat password">
+      <button onclick="registerUser()">Daftar</button>
+      <p>Sudah punya akun? <a href="#" onclick="toggleForm('login')">Login di sini</a></p>
     </section>
 
     <section id="informasi" style="display:none">
-      <h2>Informasi Pendaftaran</h2>
+      <h2>Selamat Datang, <span id="userDisplay"></span>!</h2>
       <p>Pendaftaran dibuka untuk semua jurusan dengan gelombang sesuai kalender akademik. Biaya pendaftaran bervariasi tergantung jurusan yang dipilih. Mohon siapkan data berikut sebelum mendaftar:</p>
       <ul>
         <li><strong>Data Siswa:</strong> Nama, NIK, TTL, Jenis Kelamin, Alamat lengkap, Nomor HP, Email</li>
@@ -137,11 +148,36 @@
   </main>
 
   <script>
-    function handleLogin() {
+    const users = JSON.parse(localStorage.getItem('users') || '{}');
+
+    function toggleForm(form) {
+      document.getElementById('login').style.display = form === 'login' ? 'block' : 'none';
+      document.getElementById('register').style.display = form === 'register' ? 'block' : 'none';
+    }
+
+    function registerUser() {
+      const username = document.getElementById('regUsername').value.trim();
+      const password = document.getElementById('regPassword').value;
+      if (!username || !password) return alert('Isi semua kolom registrasi.');
+      if (users[username]) return alert('Username sudah digunakan.');
+      users[username] = { password };
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('Registrasi berhasil! Silakan login.');
+      toggleForm('login');
+    }
+
+    function loginUser() {
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      if (!users[username] || users[username].password !== password) {
+        return alert('Username atau password salah.');
+      }
       document.getElementById('login').style.display = 'none';
+      document.getElementById('register').style.display = 'none';
       document.getElementById('informasi').style.display = 'block';
       document.getElementById('formulir').style.display = 'block';
       document.getElementById('verifikasi').style.display = 'block';
+      document.getElementById('userDisplay').textContent = username;
     }
 
     function validateForm() {

@@ -1,158 +1,137 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PPDB Online - Modern UI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPDB Online - Formulir Siswa Baru</title>
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      color: #333;
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #4f46e5, #06b6d4);
-      color: #fff;
-      padding: 40px;
+      padding: 0;
     }
-
-    h1, h2, h3 {
-      margin-bottom: 16px;
+    header {
+      background-color: #283593;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
     }
-
-    .container {
-      max-width: 960px;
+    main {
+      padding: 30px;
+      max-width: 900px;
       margin: auto;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 32px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(6px);
     }
-
-    button {
-      background: #06b6d4;
-      color: #fff;
-      border: none;
-      padding: 12px 24px;
+    section {
+      background: white;
+      padding: 25px;
+      margin-bottom: 30px;
       border-radius: 12px;
-      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    section h2 {
+      color: #283593;
+      margin-top: 0;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
       font-weight: 600;
-      transition: background 0.3s ease;
-      margin: 6px;
     }
-
-    button:hover {
-      background: #0891b2;
-    }
-
-    input, select, textarea {
+    input, select {
       width: 100%;
       padding: 10px;
-      margin-top: 6px;
-      margin-bottom: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #283593;
+      color: white;
+      padding: 12px 20px;
       border: none;
       border-radius: 8px;
-      font-size: 14px;
-    }
-
-    label {
-      font-weight: 500;
-    }
-
-    .section {
-      margin-bottom: 40px;
-    }
-
-    #infoPage {
-      line-height: 1.8;
+      cursor: pointer;
       font-size: 16px;
     }
-
-    .hidden {
-      display: none;
-    }
-
-    .title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.15);
-      padding: 24px;
-      border-radius: 12px;
-      margin-bottom: 24px;
+    button:hover {
+      background-color: #1a237e;
     }
   </style>
 </head>
 <body>
+  <header>
+    PPDB Online - Formulir Pendaftaran Siswa Baru
+  </header>
+  <main>
 
-  <div class="container">
-    <h1 class="title">PPDB Online - SMK Modern Nusantara</h1>
+    <section>
+      <h2>Login / Registrasi</h2>
+      <label>Username</label>
+      <input type="text" placeholder="Masukkan username">
+      <label>Password</label>
+      <input type="password" placeholder="Masukkan password">
+      <button>Masuk / Daftar</button>
+    </section>
 
-    <!-- Halaman Info -->
-    <div id="infoPage" class="section">
-      <div class="card">
-        <h2>Informasi PPDB</h2>
-        <p>
-          Selamat datang di portal resmi PPDB Online SMK Modern Nusantara Tahun Ajaran 2025/2026. Proses Penerimaan Peserta Didik Baru dilakukan sepenuhnya secara daring. Pastikan seluruh data Anda benar dan lengkap.
-        </p>
-        <p>
-          <strong>Gelombang Pendaftaran:</strong><br>
-          Gelombang 1: 1 Mei - 30 Juni 2025<br>
-          Gelombang 2: 1 Juli - 15 Agustus 2025
-        </p>
-        <p>
-          <strong>Biaya Pendaftaran & Jurusan:</strong><br>
-          - Teknik Komputer & Jaringan: Rp500.000<br>
-          - Rekayasa Perangkat Lunak: Rp600.000<br>
-          - Teknik Elektronika Industri: Rp550.000
-        </p>
-        <p>
-          <strong>Persyaratan Umum:</strong><br>
-          - Lulusan SMP/MTs sederajat<br>
-          - Fotokopi Ijazah<br>
-          - Fotokopi Akta Kelahiran & Kartu Keluarga<br>
-          - Pas Foto ukuran 3x4 (3 lembar)<br>
-          - Surat Keterangan Sehat dari Dokter<br>
-          - Mengisi formulir pendaftaran secara lengkap
-        </p>
-        <p>
-          <strong>Alur Pendaftaran:</strong><br>
-          1. Calon siswa melakukan registrasi akun<br>
-          2. Login dan mengisi formulir secara lengkap<br>
-          3. Melakukan verifikasi dan konfirmasi data<br>
-          4. Melihat hasil pengumuman penerimaan
-        </p>
-        <p>
-          Jika Anda mengalami kesulitan, silakan hubungi admin PPDB melalui WhatsApp di 0812-3456-7890.
-        </p>
-      </div>
-      <button onclick="showRegister()">Daftar Sekarang</button>
-      <button onclick="showLogin()">Sudah Punya Akun</button>
-    </div>
+    <section>
+      <h2>Informasi Pendaftaran</h2>
+      <p>Pendaftaran dibuka untuk semua jurusan dengan gelombang sesuai kalender akademik. Biaya pendaftaran bervariasi tergantung jurusan yang dipilih. Mohon siapkan data berikut sebelum mendaftar:</p>
+      <ul>
+        <li><strong>Data Siswa:</strong> Nama, NIK, TTL, Jenis Kelamin, Alamat lengkap, Nomor HP, Email</li>
+        <li><strong>Data Orang Tua:</strong> Nama Ayah & Ibu, Alamat, Pekerjaan, Penghasilan, Nomor HP</li>
+        <li><strong>Data Pendidikan:</strong> Ijazah, NISN</li>
+      </ul>
+    </section>
 
-    <!-- Halaman Lainnya (Registrasi, Login, Formulir, dst.) -->
-    <!-- Kode lainnya tetap sesuai yang sudah kamu buat sebelumnya -->
-    <!-- Tambahkan kembali elemen dengan id: registerPage, loginFormPage, mainPage, formPage, confirmPage, resultPage, pengumumanPage, dll -->
+    <section>
+      <h2>Formulir Pendaftaran</h2>
+      <label>Nama Lengkap</label>
+      <input type="text">
+      <label>NIK</label>
+      <input type="text">
+      <label>Tempat & Tanggal Lahir</label>
+      <input type="text">
+      <label>Jenis Kelamin</label>
+      <select><option>Laki-laki</option><option>Perempuan</option></select>
+      <label>Alamat Lengkap</label>
+      <input type="text">
+      <label>Nomor HP</label>
+      <input type="text">
+      <label>Email</label>
+      <input type="email">
+      <hr>
+      <label>Nama Ayah</label>
+      <input type="text">
+      <label>Nama Ibu</label>
+      <input type="text">
+      <label>Alamat Orang Tua</label>
+      <input type="text">
+      <label>Pekerjaan Orang Tua</label>
+      <input type="text">
+      <label>Penghasilan Bulanan</label>
+      <input type="text">
+      <label>Nomor HP Orang Tua</label>
+      <input type="text">
+      <hr>
+      <label>Data Ijazah</label>
+      <input type="text">
+      <label>Data NISN</label>
+      <input type="text">
+      <hr>
+      <label>Jurusan Pilihan</label>
+      <select><option>TKJ</option><option>RPL</option><option>MM</option><option>DKV</option></select>
+      <button>Kirim Formulir</button>
+    </section>
 
-  </div>
+    <section>
+      <h2>Verifikasi dan Pengumuman</h2>
+      <p>Setelah mengisi data lengkap, formulir akan diverifikasi. Jika data valid dan sesuai, Anda dapat melihat pengumuman di halaman utama. Calon siswa yang diterima akan mendapatkan notifikasi dan akses informasi lanjutan.</p>
+    </section>
 
-  <script>
-    // Fungsi dasar navigasi antar halaman
-    function showRegister() {
-      document.getElementById("infoPage").classList.add("hidden");
-      document.getElementById("registerPage").classList.remove("hidden");
-    }
-
-    function showLogin() {
-      document.getElementById("infoPage").classList.add("hidden");
-      document.getElementById("loginFormPage").classList.remove("hidden");
-    }
-
-    // Lanjutkan dengan fungsi-fungsi lain: login(), daftar(), lanjutForm(), verifikasi(), dsb.
-  </script>
-
+  </main>
 </body>
 </html>

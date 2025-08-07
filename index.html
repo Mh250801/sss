@@ -1,328 +1,214 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>PPDB Online</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPDB Flash App</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #eef2f3, #c3cfe2);
       margin: 0;
       padding: 0;
     }
     .container {
-      max-width: 540px;
-      margin: 40px auto;
-      padding: 32px;
-      background: #ffffff;
-      border-radius: 14px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      max-width: 960px;
+      margin: 30px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
     }
-    h2 {
+    h1, h2, h3 {
       text-align: center;
       color: #2c3e50;
-      font-size: 24px;
-      margin-bottom: 24px;
     }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      font-size: 14px;
-      color: #333;
-    }
-    input, select, button {
+    input, select, textarea {
       width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 16px;
+      padding: 12px;
+      margin: 12px 0;
       border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      box-sizing: border-box;
-    }
-    input:focus, select:focus {
-      border-color: #1976d2;
-      outline: none;
-      background: #f0f8ff;
+      border: 1px solid #bbb;
+      font-size: 16px;
     }
     button {
-      background-color: #1976d2;
-      color: #fff;
+      background: #007bff;
+      color: white;
+      padding: 12px 25px;
       border: none;
-      font-weight: 600;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      font-size: 16px;
+      margin: 10px 5px;
     }
     button:hover {
-      background-color: #125a9e;
+      background: #0056b3;
+    }
+    .form-section {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    label {
+      font-weight: bold;
+    }
+    .form-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .info-box, .timeline, .extra-info {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 8px;
     }
     .info-box {
-      background: #e3f2fd;
-      border-left: 4px solid #1976d2;
-      padding: 16px;
-      font-size: 14px;
-      margin-bottom: 24px;
-      color: #333;
-      border-radius: 6px;
+      background: #f0f8ff;
+      border-left: 4px solid #007bff;
     }
-    .footer {
+    .timeline {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+    }
+    .extra-info {
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+    }
+    footer {
       text-align: center;
-      font-size: 12px;
-      color: #999;
-      margin-top: 40px;
-      margin-bottom: 10px;
-    }
-    .hidden { display: none; }
-    .error {
-      color: #d32f2f;
-      text-align: center;
-      margin-bottom: 16px;
-      font-size: 13px;
-    }
-    ul {
-      padding-left: 16px;
-      font-size: 14px;
-      margin-top: 0;
-    }
-    ul li { margin-bottom: 8px; }
-    ul li b { color: #1976d2; }
-    hr {
-      margin: 24px 0;
-      border: none;
-      border-top: 1px solid #eee;
-    }
-    .success {
-      color: #388e3c;
-      font-size: 15px;
-      text-align: center;
-      margin-bottom: 16px;
+      padding: 20px;
+      background-color: #222;
+      color: white;
+      margin-top: 50px;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Penerimaan Peserta Didik Baru (PPDB) Flash App</h1>
 
-<div class="container" id="loginPage">
-  <h2>PPDB Online</h2>
-  <div class="info-box">
-    <strong>Informasi Pendaftaran:</strong><br>
-    Penerimaan Peserta Didik Baru (PPDB) dibuka untuk dua gelombang:<br>
-    - Gelombang 1: 1 - 30 Juni<br>
-    - Gelombang 2: 1 - 31 Juli<br><br>
-    Pilihan jurusan tersedia: IPA & IPS.<br>
-    Biaya pendaftaran:<br>
-    - IPA: Rp 1.000.000<br>
-    - IPS: Rp 900.000<br><br>
-    Pastikan Anda mengisi data dengan benar dan menyimpan bukti pendaftaran.
+    <!-- Form Registrasi -->
+    <div class="form-section">
+      <div class="form-title">🔐 Registrasi Akun</div>
+      <label for="regNama">Nama Lengkap</label>
+      <input type="text" id="regNama" placeholder="Nama Lengkap">
+      <label for="regEmail">Email</label>
+      <input type="email" id="regEmail" placeholder="Email Aktif">
+      <label for="regPassword">Password</label>
+      <input type="password" id="regPassword" placeholder="Password">
+      <button onclick="registrasiUser()">Daftar</button>
+    </div>
+
+    <!-- Form Login -->
+    <div class="form-section">
+      <div class="form-title">🔓 Login Akun</div>
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" placeholder="Email Terdaftar">
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" placeholder="Password">
+      <button onclick="loginUser()">Login</button>
+    </div>
+
+    <!-- Formulir Pendaftaran Siswa -->
+    <div class="form-section">
+      <div class="form-title">📝 Formulir Data Calon Siswa</div>
+      <label for="namaSiswa">Nama Lengkap</label>
+      <input type="text" id="namaSiswa">
+      <label for="nik">NIK</label>
+      <input type="text" id="nik">
+      <label for="ttl">Tempat & Tanggal Lahir</label>
+      <input type="text" id="ttl">
+      <label for="jk">Jenis Kelamin</label>
+      <select id="jk">
+        <option value="">-- Pilih --</option>
+        <option value="Laki-laki">Laki-laki</option>
+        <option value="Perempuan">Perempuan</option>
+      </select>
+      <label for="alamat">Alamat Lengkap</label>
+      <textarea id="alamat"></textarea>
+      <label for="nohp">No HP</label>
+      <input type="text" id="nohp">
+      <label for="email">Email</label>
+      <input type="email" id="email">
+    </div>
+
+    <!-- Data Orangtua -->
+    <div class="form-section">
+      <div class="form-title">👪 Data Orangtua</div>
+      <label for="ayah">Nama Ayah</label>
+      <input type="text" id="ayah">
+      <label for="ibu">Nama Ibu</label>
+      <input type="text" id="ibu">
+      <label for="alamatOrtu">Alamat Orangtua</label>
+      <textarea id="alamatOrtu"></textarea>
+      <label for="pekerjaan">Pekerjaan Orangtua</label>
+      <input type="text" id="pekerjaan">
+      <label for="penghasilan">Penghasilan Bulanan</label>
+      <input type="text" id="penghasilan">
+      <label for="hpOrtu">No HP Orangtua</label>
+      <input type="text" id="hpOrtu">
+    </div>
+
+    <!-- Data Pendidikan -->
+    <div class="form-section">
+      <div class="form-title">📚 Data Pendidikan</div>
+      <label for="asalSekolah">Asal Sekolah</label>
+      <input type="text" id="asalSekolah">
+      <label for="nisn">NISN</label>
+      <input type="text" id="nisn">
+      <label for="ijazah">Nomor Ijazah</label>
+      <input type="text" id="ijazah">
+      <label for="jurusan">Pilihan Jurusan</label>
+      <select id="jurusan">
+        <option value="">-- Pilih Jurusan --</option>
+        <option value="IPA">IPA</option>
+        <option value="IPS">IPS</option>
+        <option value="TKJ">TKJ</option>
+        <option value="RPL">RPL</option>
+        <option value="DKV">DKV</option>
+        <option value="AKL">AKL</option>
+        <option value="OTKP">OTKP</option>
+      </select>
+      <button onclick="submitFormulir()">Kirim Formulir</button>
+    </div>
+
+    <!-- Pengumuman -->
+    <div class="form-section">
+      <div class="form-title">📢 Pengumuman Hasil Seleksi</div>
+      <p>Status Verifikasi: <span id="statusVerifikasi" class="status-badge">Belum Diverifikasi</span></p>
+      <p>Hasil Seleksi: <strong id="hasilSeleksi">Belum Ada</strong></p>
+    </div>
   </div>
-  <button onclick="showPage('registerPage')">Registrasi</button>
-  <button onclick="showPage('loginFormPage')">Login</button>
-</div>
 
-<div class="container hidden" id="registerPage">
-  <h2>Registrasi</h2>
-  <label>Username</label>
-  <input type="text" id="regUsername" placeholder="Username">
-  <label>Password</label>
-  <input type="password" id="regPassword" placeholder="Password">
-  <button onclick="register()">Simpan & Masuk</button>
-  <button onclick="showPage('loginPage')">Kembali</button>
-</div>
+  <footer>
+    <p>&copy; 2025 PPDB Flash App. All Rights Reserved.</p>
+  </footer>
 
-<div class="container hidden" id="loginFormPage">
-  <h2>Login</h2>
-  <label>Username</label>
-  <input type="text" id="loginUsername" placeholder="Username">
-  <label>Password</label>
-  <input type="password" id="loginPassword" placeholder="Password">
-  <button onclick="login()">Login</button>
-  <button onclick="showPage('loginPage')">Kembali</button>
-  <div id="loginError" class="error"></div>
-</div>
+  <script>
+    const ADMIN_USER = "admin";
+    const ADMIN_PASS = "123";
 
-<div class="container hidden" id="mainPage">
-  <h2>Selamat Datang</h2>
-  <div class="info-box">
-    Anda berhasil masuk ke sistem PPDB Online.<br><br>
-    Silakan lanjutkan dengan mengisi formulir pendaftaran dan pastikan semua data Anda sudah benar sebelum diverifikasi.
-  </div>
-  <button onclick="showPage('infoPage')">Info Pendaftaran</button>
-  <button onclick="logout()">Logout</button>
-</div>
+    function registrasiUser() {
+      alert("Registrasi berhasil! Silakan login.");
+    }
 
-<div class="container hidden" id="infoPage">
-  <h2>Info Pendaftaran</h2>
-  <ul>
-    <li>Gelombang 1: <b>1-30 Juni</b></li>
-    <li>Gelombang 2: <b>1-31 Juli</b></li>
-    <li>Biaya jurusan IPA: <b>Rp 1.000.000</b></li>
-    <li>Biaya jurusan IPS: <b>Rp 900.000</b></li>
-  </ul>
-  <button onclick="showPage('formPage')">Formulir Pendaftaran</button>
-  <button onclick="showPage('mainPage')">Kembali</button>
-</div>
+    function loginUser() {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      if (email === ADMIN_USER && password === ADMIN_PASS) {
+        alert("Login Admin berhasil!");
+      } else {
+        alert("Login berhasil! Silakan isi formulir.");
+      }
+    }
 
-<div class="container hidden" id="formPage">
-  <h2>Formulir Pendaftaran</h2>
-  <label>Nama Lengkap</label>
-  <input type="text" id="nama">
-  <label>NIK</label>
-  <input type="text" id="nik">
-  <label>Tempat & Tanggal Lahir</label>
-  <input type="text" id="ttl">
-  <label>Jenis Kelamin</label>
-  <select id="jk">
-    <option value="">Pilih</option>
-    <option value="Laki-laki">Laki-laki</option>
-    <option value="Perempuan">Perempuan</option>
-  </select>
-  <label>Alamat Lengkap</label>
-  <input type="text" id="alamat">
-  <label>No HP Siswa</label>
-  <input type="text" id="nohp">
-  <label>Email Siswa</label>
-  <input type="email" id="email">
-  <hr>
-  <label>Nama Ayah & Ibu</label>
-  <input type="text" id="ayahibu">
-  <label>Alamat Orangtua</label>
-  <input type="text" id="alamatortu">
-  <label>Pekerjaan Orangtua</label>
-  <input type="text" id="pekerjaan">
-  <label>Penghasilan Bulanan</label>
-  <input type="text" id="penghasilan">
-  <label>No HP Orangtua</label>
-  <input type="text" id="nohp_ortu">
-  <hr>
-  <label>Data Ijazah</label>
-  <input type="text" id="ijazah">
-  <label>Data NISN</label>
-  <input type="text" id="nisn">
-  <label>Pilihan Jurusan</label>
-  <select id="jurusan">
-    <option value="">Pilih</option>
-    <option value="IPA">IPA</option>
-    <option value="IPS">IPS</option>
-  </select>
-  <button onclick="lanjutForm()">Lanjut</button>
-  <button onclick="showPage('infoPage')">Kembali</button>
-</div>
-
-<div class="container hidden" id="confirmPage">
-  <h2>Konfirmasi Data</h2>
-  <ul>
-    <li><b>Nama:</b> <span id="cNama"></span></li>
-    <li><b>NIK:</b> <span id="cNIK"></span></li>
-    <li><b>TTL:</b> <span id="cTTL"></span></li>
-    <li><b>Jenis Kelamin:</b> <span id="cJK"></span></li>
-    <li><b>Alamat:</b> <span id="cAlamat"></span></li>
-    <li><b>No HP:</b> <span id="cNoHP"></span></li>
-    <li><b>Email:</b> <span id="cEmail"></span></li>
-    <li><b>Orangtua:</b> <span id="cAyahIbu"></span></li>
-    <li><b>Alamat Ortu:</b> <span id="cAlamatOrtu"></span></li>
-    <li><b>Pekerjaan:</b> <span id="cPekerjaan"></span></li>
-    <li><b>Penghasilan:</b> <span id="cPenghasilan"></span></li>
-    <li><b>HP Ortu:</b> <span id="cNoHPOrtu"></span></li>
-    <li><b>Ijazah:</b> <span id="cIjazah"></span></li>
-    <li><b>NISN:</b> <span id="cNISN"></span></li>
-    <li><b>Jurusan:</b> <span id="cJurusan"></span></li>
-  </ul>
-  <button onclick="verifikasi()">Verifikasi</button>
-  <button onclick="kembaliForm()">Kembali</button>
-</div>
-
-<div class="container hidden" id="resultPage">
-  <h2>Pendaftaran Berhasil</h2>
-  <div class="success">Terima kasih telah mendaftar.<br>Silakan cek pengumuman penerimaan.</div>
-  <button onclick="showPage('pengumumanPage')">Lihat Pengumuman</button>
-</div>
-
-<div class="container hidden" id="pengumumanPage">
-  <h2>Pengumuman</h2>
-  <div class="success">Selamat! Anda diterima sebagai calon siswa.</div>
-  <button onclick="resetForm()">Kembali ke Halaman Utama</button>
-</div>
-
-<div class="footer">
-  &copy; 2025 PPDB Online | Sistem Kelas Khusus IMK
-</div>
-
-<script>
-function showPage(id) {
-  document.querySelectorAll('.container').forEach(el => el.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  if (id === 'loginFormPage') document.getElementById('loginError').innerText = '';
-}
-let user = {}, dataPendaftar = {};
-
-function register() {
-  const u = document.getElementById('regUsername').value.trim();
-  const p = document.getElementById('regPassword').value.trim();
-  if (!u || !p) return alert('Username dan password harus diisi!');
-  if (u === p) return alert('Username dan password tidak boleh sama!');
-  user.username = u; user.password = p;
-  showPage('mainPage');
-}
-
-function login() {
-  const u = document.getElementById('loginUsername').value.trim();
-  const p = document.getElementById('loginPassword').value.trim();
-  if (!u || !p) return document.getElementById('loginError').innerText = 'Harap isi semua bidang!';
-  if (u === user.username && p === user.password) {
-    document.getElementById('loginError').innerText = '';
-    showPage('mainPage');
-  } else {
-    document.getElementById('loginError').innerText = 'Username atau password salah!';
-  }
-}
-
-function logout() { showPage('loginPage'); }
-
-function lanjutForm() {
-  const f = ['nama','nik','ttl','jk','alamat','nohp','email','ayahibu','alamatortu','pekerjaan','penghasilan','nohp_ortu','ijazah','nisn','jurusan'];
-  for (let i of f) {
-    const val = document.getElementById(i).value.trim();
-    if (!val) return alert('Semua data harus diisi!');
-    dataPendaftar[i] = val;
-  }
-  document.getElementById('cNama').innerText = dataPendaftar.nama;
-  document.getElementById('cNIK').innerText = dataPendaftar.nik;
-  document.getElementById('cTTL').innerText = dataPendaftar.ttl;
-  document.getElementById('cJK').innerText = dataPendaftar.jk;
-  document.getElementById('cAlamat').innerText = dataPendaftar.alamat;
-  document.getElementById('cNoHP').innerText = dataPendaftar.nohp;
-  document.getElementById('cEmail').innerText = dataPendaftar.email;
-  document.getElementById('cAyahIbu').innerText = dataPendaftar.ayahibu;
-  document.getElementById('cAlamatOrtu').innerText = dataPendaftar.alamatortu;
-  document.getElementById('cPekerjaan').innerText = dataPendaftar.pekerjaan;
-  document.getElementById('cPenghasilan').innerText = dataPendaftar.penghasilan;
-  document.getElementById('cNoHPOrtu').innerText = dataPendaftar.nohp_ortu;
-  document.getElementById('cIjazah').innerText = dataPendaftar.ijazah;
-  document.getElementById('cNISN').innerText = dataPendaftar.nisn;
-  document.getElementById('cJurusan').innerText = dataPendaftar.jurusan;
-  showPage('confirmPage');
-}
-
-function kembaliForm() {
-  for (let k in dataPendaftar) {
-    document.getElementById(k).value = dataPendaftar[k];
-  }
-  showPage('formPage');
-}
-
-function verifikasi() {
-  showPage('resultPage');
-}
-
-function resetForm() {
-  ['nama','nik','ttl','jk','alamat','nohp','email','ayahibu','alamatortu','pekerjaan','penghasilan','nohp_ortu','ijazah','nisn','jurusan']
-  .forEach(id => document.getElementById(id).value = '');
-  dataPendaftar = {};
-  showPage('mainPage');
-}
-
-showPage('loginPage');
-</script>
-
+    function submitFormulir() {
+      document.getElementById("statusVerifikasi").innerText = "Terverifikasi";
+      document.getElementById("hasilSeleksi").innerText = "Diterima";
+      alert("Formulir dikirim dan diverifikasi. Selamat, Anda diterima!");
+    }
+  </script>
 </body>
 </html>

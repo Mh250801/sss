@@ -306,6 +306,22 @@
     .flex-col {
       flex: 1 1 300px;
     }
+    .img-school {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(26,35,126,0.13);
+      margin-bottom: 12px;
+      object-fit: cover;
+      max-height: 180px;
+    }
+    .img-siswa {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(26,35,126,0.13);
+      object-fit: cover;
+      height: 120px;
+      margin-bottom: 10px;
+    }
     .footer {
       margin-top: 50px;
       text-align: center;
@@ -329,6 +345,7 @@
       .container { padding: 0; }
       .section, .form-section { padding: 12px 5vw; }
       h1 { font-size: 1.3rem; }
+      .img-school, .img-siswa { height: 90px; max-height: 90px; }
     }
     /* Animations for feedback */
     .shake {
@@ -394,6 +411,7 @@
         <h2>Tentang PPDB & SMK IMK</h2>
         <div class="flex-row">
           <div class="flex-col">
+            <img class="img-school" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=cover&w=400&q=80" alt="Tampak Depan SMK IMK">
             <p>
               Selamat datang di halaman resmi Penerimaan Peserta Didik Baru (PPDB) SMK INTERAKSI MANUSIA KOMPUTER.
               Kami berkomitmen memberikan pendidikan berkualitas tinggi di bidang teknologi informasi, desain, dan multimedia.
@@ -404,7 +422,8 @@
             </p>
           </div>
           <div class="flex-col" style="min-width:210px;max-width:300px;">
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=cover&w=400&q=80" alt="SMK IMK" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(26,35,126,.18)">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=cover&w=400&q=80" alt="Siswa SMK IMK">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=cover&w=400&q=80" alt="Siswa Belajar SMK IMK">
           </div>
         </div>
       </div>
@@ -436,6 +455,17 @@
           <li>Animasi</li>
           <li>Multimedia</li>
         </ul>
+        <div class="flex-row" style="gap:14px;margin-top:10px;">
+          <div class="flex-col" style="max-width:155px;">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=cover&w=300&q=80" alt="Siswa RPL">
+          </div>
+          <div class="flex-col" style="max-width:155px;">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=cover&w=300&q=80" alt="Siswa TKJ">
+          </div>
+          <div class="flex-col" style="max-width:155px;">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=300&q=80" alt="Siswa Multimedia">
+          </div>
+        </div>
       </div>
 
       <div class="section info-section">

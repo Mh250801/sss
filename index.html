@@ -346,8 +346,43 @@
 </head>
 <body>
   <div class="container">
-    <!-- ====== Halaman Informasi Utama PPDB (Landing Page) ====== -->
-    <div id="landingPage">
+    <!-- ====== Halaman Login PPDB (JADI HALAMAN AWAL) ====== -->
+    <div id="loginFormPage" class="form-section">
+      <h2>Login Akun PPDB</h2>
+      <div class="info">
+        Silakan login untuk melakukan pengisian data PPDB. Jika belum memiliki akun, silakan registrasi terlebih dahulu.
+      </div>
+      <label for="loginUsername">Username:</label>
+      <input type="text" id="loginUsername" autocomplete="username">
+
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" autocomplete="current-password">
+
+      <div class="action-buttons">
+        <button class="btn" onclick="loginUser()">Login</button>
+        <button class="btn secondary" onclick="showRegisterForm()">Registrasi</button>
+      </div>
+    </div>
+
+    <!-- Registrasi Form (hanya muncul setelah klik registrasi di halaman login) -->
+    <div id="registerFormPage" class="form-section hidden">
+      <h2>Registrasi Akun Baru</h2>
+      <label for="regUsername">Username:</label>
+      <input type="text" id="regUsername" autocomplete="username">
+
+      <label for="regPassword">Password:</label>
+      <input type="password" id="regPassword" autocomplete="new-password">
+
+      <div class="action-buttons">
+        <button class="btn secondary" onclick="registerUser()">Daftar</button>
+      </div>
+      <p style="text-align:center;">Sudah punya akun?
+        <a href="#" onclick="showLoginForm();return false;">Login</a>
+      </p>
+    </div>
+
+    <!-- ====== Halaman Informasi Utama PPDB (Landing Page, DIPINDAH KE SETELAH LOGIN) ====== -->
+    <div id="landingPage" class="hidden">
       <h1>PPDB SMK INTERAKSI MANUSIA KOMPUTER</h1>
       <div class="subtitle">Penerimaan Peserta Didik Baru Tahun Ajaran 2025/2026</div>
       <div class="alert">
@@ -369,7 +404,7 @@
             </p>
           </div>
           <div class="flex-col" style="min-width:210px;max-width:300px;">
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=cover&w=400&q=80" alt="SMK IMK" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(26,35,126,0.07);">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=cover&w=400&q=80" alt="SMK IMK" style="width:100%; border-radius:10px; box-shadow:0 2px 12px rgba(26,35,126,.18)">
           </div>
         </div>
       </div>
@@ -387,7 +422,7 @@
             <div class="label" style="background:#388e3c;">Dibuka</div>
             <h3>Gelombang 2</h3>
             <p>Periode: 1 Juli 2025 - 31 Agustus 2025</p>
-            <a class="btn secondary" href="#" onclick="goToLoginPage();event.preventDefault();">Daftar Sekarang</a>
+            <a class="btn secondary" href="#" onclick="startFormulir();event.preventDefault();">Daftar Sekarang</a>
           </div>
         </div>
       </div>
@@ -473,47 +508,6 @@
       </div>
     </div>
 
-    <!-- ====== Halaman Login PPDB, tampil sendiri ====== -->
-    <div id="loginFormPage" class="form-section hidden">
-      <h2>Login Akun PPDB</h2>
-      <div class="info">
-        Silakan login untuk melakukan pengisian data PPDB. Jika belum memiliki akun, silakan registrasi terlebih dahulu.
-      </div>
-      <label for="loginUsername">Username:</label>
-      <input type="text" id="loginUsername" autocomplete="username">
-
-      <label for="loginPassword">Password:</label>
-      <input type="password" id="loginPassword" autocomplete="current-password">
-
-      <div class="action-buttons">
-        <button class="btn" onclick="loginUser()">Login</button>
-        <button class="btn secondary" onclick="showRegisterForm()">Registrasi</button>
-      </div>
-      <p style="text-align:center;">
-        <a href="#" onclick="backToLandingPage();return false;">Kembali ke Beranda</a>
-      </p>
-    </div>
-
-    <!-- Registrasi Form (hanya muncul setelah klik registrasi di halaman login) -->
-    <div id="registerFormPage" class="form-section hidden">
-      <h2>Registrasi Akun Baru</h2>
-      <label for="regUsername">Username:</label>
-      <input type="text" id="regUsername" autocomplete="username">
-
-      <label for="regPassword">Password:</label>
-      <input type="password" id="regPassword" autocomplete="new-password">
-
-      <div class="action-buttons">
-        <button class="btn secondary" onclick="registerUser()">Daftar</button>
-      </div>
-      <p style="text-align:center;">Sudah punya akun?
-        <a href="#" onclick="showLoginForm();return false;">Login</a>
-      </p>
-      <p style="text-align:center;">
-        <a href="#" onclick="backToLandingPage();return false;">Kembali ke Beranda</a>
-      </p>
-    </div>
-
     <!-- Formulir Data Siswa -->
     <div id="formSiswa" class="form-section hidden">
       <h2>Data Siswa</h2>
@@ -586,7 +580,7 @@
       </div>
     </div>
 
-    <!-- Validasi Data -->
+    <!-- VALIDASI, PENGUMUMAN, STATUS KELULUSAN -->
     <div id="validasiData" class="form-section hidden">
       <h2>Validasi Data</h2>
       <div class="info">Silakan cek kembali data berikut. Jika ada yang salah, klik Edit. Jika sudah benar, klik Konfirmasi.</div>
@@ -678,7 +672,7 @@
       window.scrollTo({top:0, behavior: "smooth"});
     }
 
-    // Navigasi ke halaman login (khusus setelah klik "Daftar Sekarang")
+    // Navigasi ke halaman login (halaman awal)
     function goToLoginPage() {
       hideAll();
       document.getElementById("loginFormPage").classList.remove("hidden");
@@ -712,7 +706,7 @@
       const pass = document.getElementById("loginPassword");
       if (users[user.value] === pass.value) {
         currentUser = user.value;
-        startFormulir();
+        backToLandingPage();
       } else {
         user.classList.add("shake");
         pass.classList.add("shake");
@@ -740,6 +734,7 @@
         alert("Semua kolom wajib diisi!");
       }
     }
+    // Setelah login, klik "Daftar Sekarang" di landingPage baru ke formSiswa
     function startFormulir() {
       hideAll();
       document.getElementById("formSiswa").classList.remove("hidden");
@@ -873,9 +868,10 @@
       }
     }
 
-    // Saat reload, tampilkan landing page
+    // Saat reload, tampilkan halaman login
     window.onload = function() {
-      backToLandingPage();
+      hideAll();
+      document.getElementById("loginFormPage").classList.remove("hidden");
     }
   </script>
 </body>

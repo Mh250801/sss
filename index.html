@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* ... (styles tidak berubah, sama seperti aslinya) ... */
     :root {
       --primary: #1a237e;
       --secondary: #1976d2;
@@ -22,6 +21,7 @@
       --radius: 14px;
       --transition: 0.25s cubic-bezier(.4,0,.2,1);
     }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -30,6 +30,7 @@
       color: #222;
       min-height: 100vh;
     }
+
     .container {
       max-width: 1000px;
       margin: 40px auto 20px auto;
@@ -39,6 +40,7 @@
       padding: 40px 24px 30px 24px;
       position: relative;
     }
+
     h1, h2, h3 {
       color: var(--primary);
       margin-top: 0;
@@ -64,6 +66,7 @@
       font-size: 1.15rem;
       margin-bottom: 22px;
     }
+
     .alert {
       background: #ffe082;
       color: #654200;
@@ -79,9 +82,11 @@
     .alert svg {
       flex-shrink: 0;
     }
+
     .section {
       margin-bottom: 36px;
     }
+
     .gelombang {
       display: flex;
       gap: 28px;
@@ -151,6 +156,7 @@
       letter-spacing: .5px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
+
     .biaya-table {
       width: 100%;
       border-collapse: collapse;
@@ -170,6 +176,7 @@
     .biaya-table tr:nth-child(even) {
       background: #f1f1f1;
     }
+
     .btn,
     button,
     input[type="submit"] {
@@ -196,6 +203,7 @@
       background: var(--accent);
       color: #fff;
     }
+
     .info {
       background: #e0f2f1;
       padding: 15px;
@@ -231,6 +239,7 @@
       min-width: 120px;
     }
     .hidden { display: none !important; }
+
     .form-section {
       background: var(--white);
       border-radius: 12px;
@@ -287,6 +296,7 @@
     td {
       background: #fafafa;
     }
+
     .flex-row {
       display: flex;
       gap: 20px;
@@ -321,6 +331,7 @@
       font-size: 1.08rem;
       padding-bottom: 14px;
     }
+
     /* Responsive */
     @media (max-width: 1100px) {
       .container { max-width: 98vw; }
@@ -389,16 +400,133 @@
 
     <!-- ====== Halaman Informasi Utama PPDB (Landing Page, DIPINDAH KE SETELAH LOGIN) ====== -->
     <div id="landingPage" class="hidden">
-      <!-- ... (isi landingPage tidak diubah) ... -->
       <h1>PPDB SMK INTERAKSI MANUSIA KOMPUTER</h1>
       <div class="subtitle">Penerimaan Peserta Didik Baru Tahun Ajaran 2025/2026</div>
       <div class="alert">
         <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc107"/><path d="M12 7v5m0 4h.01" stroke="#654200" stroke-width="2" stroke-linecap="round"/></svg>
         <span><strong>Gelombang 1 telah DITUTUP.</strong> Silakan mendaftar melalui Gelombang 2.</span>
       </div>
-      <!-- ... dst ... -->
-      <!-- ... (tidak diubah) ... -->
-      <!-- ... (isi landingPage tidak diubah) ... -->
+
+      <div class="section info-section">
+        <h2>Tentang PPDB & SMK IMK</h2>
+        <div class="flex-row">
+          <div class="flex-col">
+            <img class="img-school" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=cover&w=400&q=80" alt="Tampak Depan SMK IMK">
+            <p>
+              Selamat datang di halaman resmi Penerimaan Peserta Didik Baru (PPDB) SMK INTERAKSI MANUSIA KOMPUTER.
+              Kami berkomitmen memberikan pendidikan berkualitas tinggi di bidang teknologi informasi, desain, dan multimedia.
+            </p>
+            <p>
+              SMK INTERAKSI MANUSIA KOMPUTER menawarkan program keahlian relevan dengan kebutuhan industri masa kini, didukung pembelajaran berbasis proyek, magang industri,
+              serta pengembangan karakter profesional.
+            </p>
+          </div>
+          <div class="flex-col" style="min-width:210px;max-width:300px;">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=cover&w=400&q=80" alt="Siswa SMK IMK">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=cover&w=400&q=80" alt="Siswa Belajar SMK IMK">
+          </div>
+        </div>
+      </div>
+
+      <div class="section info-section">
+        <h2>Pilihan Gelombang Pendaftaran</h2>
+        <div class="gelombang">
+          <div class="gelombang-card disabled">
+            <div class="label">Ditutup</div>
+            <h3>Gelombang 1</h3>
+            <p>Periode: 1 Januari 2025 - 30 Juni 2025</p>
+            <button class="btn" disabled>Daftar (Tutup)</button>
+          </div>
+          <div class="gelombang-card">
+            <div class="label" style="background:#388e3c;">Dibuka</div>
+            <h3>Gelombang 2</h3>
+            <p>Periode: 1 Juli 2025 - 31 Agustus 2025</p>
+            <a class="btn secondary" href="#" onclick="startFormulir();event.preventDefault();">Daftar Sekarang</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section info-section">
+        <h2>Jurusan yang Tersedia</h2>
+        <ul class="jurusan-list">
+          <li>Rekayasa Perangkat Lunak (RPL)</li>
+          <li>Desain Komunikasi Visual (DKV)</li>
+          <li>Teknik Komputer & Jaringan (TKJ)</li>
+          <li>Animasi</li>
+          <li>Multimedia</li>
+        </ul>
+        <div class="flex-row" style="gap:14px;margin-top:10px;">
+          <div class="flex-col" style="max-width:155px;">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=cover&w=300&q=80" alt="Siswa RPL">
+          </div>
+          <div class="flex-col" style="max-width:155px;">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=cover&w=300&q=80" alt="Siswa TKJ">
+          </div>
+          <div class="flex-col" style="max-width:155px;">
+            <img class="img-siswa" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=300&q=80" alt="Siswa Multimedia">
+          </div>
+        </div>
+      </div>
+
+      <div class="section info-section">
+        <h2>Estimasi Biaya Pendidikan</h2>
+        <table class="biaya-table">
+          <thead>
+            <tr>
+              <th>Komponen</th>
+              <th>Gelombang 1</th>
+              <th>Gelombang 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Uang Pendaftaran</td>
+              <td>Rp 150.000</td>
+              <td>Rp 150.000</td>
+            </tr>
+            <tr>
+              <td>Uang Gedung</td>
+              <td>Rp 2.000.000</td>
+              <td>Rp 2.250.000</td>
+            </tr>
+            <tr>
+              <td>SPP per Bulan</td>
+              <td>Rp 350.000</td>
+              <td>Rp 350.000</td>
+            </tr>
+            <tr>
+              <td>Seragam & Atribut</td>
+              <td>Rp 750.000</td>
+              <td>Rp 750.000</td>
+            </tr>
+            <tr>
+              <td>Praktek & Kegiatan</td>
+              <td>Rp 500.000</td>
+              <td>Rp 500.000</td>
+            </tr>
+            <tr>
+              <th>Total Estimasi Awal</th>
+              <th>Rp 3.750.000</th>
+              <th>Rp 4.000.000</th>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <em>*Catatan:</em> Biaya dapat berubah sesuai kebijakan sekolah. Informasi lebih lanjut dapat diperoleh di sekretariat PPDB.
+        </p>
+      </div>
+
+      <div class="section info-section">
+        <h2>Persyaratan Umum Pendaftaran</h2>
+        <ul>
+          <li>Fotokopi ijazah/SKHU SMP/MTs sederajat</li>
+          <li>Fotokopi Kartu Keluarga (KK)</li>
+          <li>Fotokopi Akta Kelahiran</li>
+          <li>Pas foto 3x4 (4 lembar)</li>
+          <li>Mengisi formulir pendaftaran online</li>
+        </ul>
+      </div>
+
       <div class="section info-section contact" style="margin-top:36px;">
         <h2>Kontak & Informasi</h2>
         <p>
@@ -407,30 +535,6 @@
           <strong>Email:</strong> info@smkimk.sch.id<br>
           <strong>Alamat:</strong> Jl. Teknologi No. 123, Yogyakarta
         </p>
-      </div>
-    </div>
-
-    <!-- VALIDASI, PENGUMUMAN, STATUS KELULUSAN -->
-    <!-- VALIDASI DATA SEKARANG JADI LEBIH AWAL -->
-    <div id="validasiData" class="form-section hidden">
-      <h2>Validasi Data</h2>
-      <div class="info">Silakan cek kembali data berikut. Jika ada yang salah, klik Edit. Jika sudah benar, klik Konfirmasi.</div>
-      <h3>Data Siswa</h3>
-      <table>
-        <tr><th>Nama Lengkap</th><td id="v_s_nama"></td></tr>
-        <tr><th>NIK</th><td id="v_s_nik"></td></tr>
-        <tr><th>Tempat, Tanggal Lahir</th><td id="v_s_tempat_lahir"></td></tr>
-        <tr><th>Jenis Kelamin</th><td id="v_s_jk"></td></tr>
-        <tr><th>Alamat Lengkap</th><td id="v_s_alamat"></td></tr>
-        <tr><th>Nomor HP Siswa</th><td id="v_s_hp"></td></tr>
-        <tr><th>Email Siswa</th><td id="v_s_email"></td></tr>
-        <tr><th>Data Ijazah</th><td id="v_s_ijazah"></td></tr>
-        <tr><th>NISN</th><td id="v_s_nisn"></td></tr>
-        <tr><th>Asal Sekolah</th><td id="v_s_sekolah"></td></tr>
-      </table>
-      <div class="action-buttons">
-        <button class="btn" onclick="editData()">Edit</button>
-        <button class="btn secondary" onclick="lanjutOrtu()">Lanjut Data Orang Tua</button>
       </div>
     </div>
 
@@ -475,7 +579,7 @@
       <input type="text" id="s_sekolah">
 
       <div class="action-buttons">
-        <button class="btn secondary" onclick="simpanSiswa()">Lanjut Validasi Data</button>
+        <button class="btn secondary" onclick="simpanSiswa()">Lanjut Data Orang Tua</button>
       </div>
     </div>
 
@@ -501,8 +605,40 @@
       <input type="text" id="o_hp">
 
       <div class="action-buttons">
-        <button class="btn" onclick="backToValidasi()">Kembali</button>
-        <button class="btn secondary" onclick="simpanOrtu()">Lanjut Pengumuman</button>
+        <button class="btn" onclick="backToSiswa()">Kembali</button>
+        <button class="btn secondary" onclick="simpanOrtu()">Lanjut Validasi</button>
+      </div>
+    </div>
+
+    <!-- VALIDASI, PENGUMUMAN, STATUS KELULUSAN -->
+    <div id="validasiData" class="form-section hidden">
+      <h2>Validasi Data</h2>
+      <div class="info">Silakan cek kembali data berikut. Jika ada yang salah, klik Edit. Jika sudah benar, klik Konfirmasi.</div>
+      <h3>Data Siswa</h3>
+      <table>
+        <tr><th>Nama Lengkap</th><td id="v_s_nama"></td></tr>
+        <tr><th>NIK</th><td id="v_s_nik"></td></tr>
+        <tr><th>Tempat, Tanggal Lahir</th><td id="v_s_tempat_lahir"></td></tr>
+        <tr><th>Jenis Kelamin</th><td id="v_s_jk"></td></tr>
+        <tr><th>Alamat Lengkap</th><td id="v_s_alamat"></td></tr>
+        <tr><th>Nomor HP Siswa</th><td id="v_s_hp"></td></tr>
+        <tr><th>Email Siswa</th><td id="v_s_email"></td></tr>
+        <tr><th>Data Ijazah</th><td id="v_s_ijazah"></td></tr>
+        <tr><th>NISN</th><td id="v_s_nisn"></td></tr>
+        <tr><th>Asal Sekolah</th><td id="v_s_sekolah"></td></tr>
+      </table>
+      <h3>Data Orang Tua</h3>
+      <table>
+        <tr><th>Nama Orang Tua</th><td id="v_o_nama"></td></tr>
+        <tr><th>Alamat Orang Tua</th><td id="v_o_alamat"></td></tr>
+        <tr><th>Tanggal Lahir</th><td id="v_o_tanggal_lahir"></td></tr>
+        <tr><th>Pekerjaan</th><td id="v_o_pekerjaan"></td></tr>
+        <tr><th>Penghasilan Perbulan</th><td id="v_o_penghasilan"></td></tr>
+        <tr><th>Nomor HP Orang Tua</th><td id="v_o_hp"></td></tr>
+      </table>
+      <div class="action-buttons">
+        <button class="btn" onclick="editData()">Edit</button>
+        <button class="btn secondary" onclick="konfirmasiData()">Konfirmasi</button>
       </div>
     </div>
 
@@ -655,55 +791,12 @@
         s_nama, s_nik, s_tempat_lahir, s_tanggal_lahir, s_jk, s_alamat, s_hp, s_email, s_ijazah, s_nisn, s_sekolah
       };
       localStorage.setItem("dataSiswa", JSON.stringify(dataSiswa));
-      tampilValidasi(); // Sekarang langsung ke validasi setelah isi data siswa
-    }
-
-    // TAMPIL VALIDASI DATA SISWA
-    function tampilValidasi() {
-      hideAll();
-      document.getElementById("validasiData").classList.remove("hidden");
-      const s = JSON.parse(localStorage.getItem("dataSiswa")) || {};
-      // Siswa
-      document.getElementById("v_s_nama").textContent = s.s_nama||"";
-      document.getElementById("v_s_nik").textContent = s.s_nik||"";
-      document.getElementById("v_s_tempat_lahir").textContent = (s.s_tempat_lahir||"") + ', ' + (s.s_tanggal_lahir||"");
-      document.getElementById("v_s_jk").textContent = s.s_jk||"";
-      document.getElementById("v_s_alamat").textContent = s.s_alamat||"";
-      document.getElementById("v_s_hp").textContent = s.s_hp||"";
-      document.getElementById("v_s_email").textContent = s.s_email||"";
-      document.getElementById("v_s_ijazah").textContent = s.s_ijazah||"";
-      document.getElementById("v_s_nisn").textContent = s.s_nisn||"";
-      document.getElementById("v_s_sekolah").textContent = s.s_sekolah||"";
-    }
-
-    // EDIT DATA SISWA DARI VALIDASI
-    function editData() {
-      hideAll();
-      document.getElementById("formSiswa").classList.remove("hidden");
-      // Prefill data siswa
-      const s = JSON.parse(localStorage.getItem("dataSiswa")) || {};
-      document.getElementById("s_nama").value = s.s_nama||"";
-      document.getElementById("s_nik").value = s.s_nik||"";
-      document.getElementById("s_tempat_lahir").value = s.s_tempat_lahir||"";
-      document.getElementById("s_tanggal_lahir").value = s.s_tanggal_lahir||"";
-      document.getElementById("s_jk").value = s.s_jk||"";
-      document.getElementById("s_alamat").value = s.s_alamat||"";
-      document.getElementById("s_hp").value = s.s_hp||"";
-      document.getElementById("s_email").value = s.s_email||"";
-      document.getElementById("s_ijazah").value = s.s_ijazah||"";
-      document.getElementById("s_nisn").value = s.s_nisn||"";
-      document.getElementById("s_sekolah").value = s.s_sekolah||"";
-    }
-
-    // LANJUT ORANG TUA DARI VALIDASI DATA SISWA
-    function lanjutOrtu() {
       hideAll();
       document.getElementById("formOrtu").classList.remove("hidden");
     }
-
-    // KEMBALI KE VALIDASI DARI FORM ORTU
-    function backToValidasi() {
-      tampilValidasi();
+    function backToSiswa() {
+      hideAll();
+      document.getElementById("formSiswa").classList.remove("hidden");
     }
 
     // DATA ORANG TUA
@@ -722,10 +815,61 @@
         o_nama, o_alamat, o_tanggal_lahir, o_pekerjaan, o_penghasilan, o_hp
       };
       localStorage.setItem("dataOrtu", JSON.stringify(dataOrtu));
-      konfirmasiData(); // Setelah isi ortu langsung ke pengumuman
+      tampilValidasi();
     }
 
-    // KONFIRMASI DATA & PENGUMUMAN
+    // VALIDASI
+    function tampilValidasi() {
+      hideAll();
+      document.getElementById("validasiData").classList.remove("hidden");
+      const s = JSON.parse(localStorage.getItem("dataSiswa")) || {};
+      const o = JSON.parse(localStorage.getItem("dataOrtu")) || {};
+      // Siswa
+      document.getElementById("v_s_nama").textContent = s.s_nama||"";
+      document.getElementById("v_s_nik").textContent = s.s_nik||"";
+      document.getElementById("v_s_tempat_lahir").textContent = (s.s_tempat_lahir||"") + ', ' + (s.s_tanggal_lahir||"");
+      document.getElementById("v_s_jk").textContent = s.s_jk||"";
+      document.getElementById("v_s_alamat").textContent = s.s_alamat||"";
+      document.getElementById("v_s_hp").textContent = s.s_hp||"";
+      document.getElementById("v_s_email").textContent = s.s_email||"";
+      document.getElementById("v_s_ijazah").textContent = s.s_ijazah||"";
+      document.getElementById("v_s_nisn").textContent = s.s_nisn||"";
+      document.getElementById("v_s_sekolah").textContent = s.s_sekolah||"";
+      // Orang tua
+      document.getElementById("v_o_nama").textContent = o.o_nama||"";
+      document.getElementById("v_o_alamat").textContent = o.o_alamat||"";
+      document.getElementById("v_o_tanggal_lahir").textContent = o.o_tanggal_lahir||"";
+      document.getElementById("v_o_pekerjaan").textContent = o.o_pekerjaan||"";
+      document.getElementById("v_o_penghasilan").textContent = o.o_penghasilan||"";
+      document.getElementById("v_o_hp").textContent = o.o_hp||"";
+    }
+    function editData() {
+      hideAll();
+      document.getElementById("formSiswa").classList.remove("hidden");
+      // Prefill data siswa
+      const s = JSON.parse(localStorage.getItem("dataSiswa")) || {};
+      document.getElementById("s_nama").value = s.s_nama||"";
+      document.getElementById("s_nik").value = s.s_nik||"";
+      document.getElementById("s_tempat_lahir").value = s.s_tempat_lahir||"";
+      document.getElementById("s_tanggal_lahir").value = s.s_tanggal_lahir||"";
+      document.getElementById("s_jk").value = s.s_jk||"";
+      document.getElementById("s_alamat").value = s.s_alamat||"";
+      document.getElementById("s_hp").value = s.s_hp||"";
+      document.getElementById("s_email").value = s.s_email||"";
+      document.getElementById("s_ijazah").value = s.s_ijazah||"";
+      document.getElementById("s_nisn").value = s.s_nisn||"";
+      document.getElementById("s_sekolah").value = s.s_sekolah||"";
+      // Prefill data ortu disaat pindah ke form ortu
+      setTimeout(()=>{
+        const o = JSON.parse(localStorage.getItem("dataOrtu")) || {};
+        document.getElementById("o_nama").value = o.o_nama||"";
+        document.getElementById("o_alamat").value = o.o_alamat||"";
+        document.getElementById("o_tanggal_lahir").value = o.o_tanggal_lahir||"";
+        document.getElementById("o_pekerjaan").value = o.o_pekerjaan||"";
+        document.getElementById("o_penghasilan").value = o.o_penghasilan||"";
+        document.getElementById("o_hp").value = o.o_hp||"";
+      }, 300);
+    }
     function konfirmasiData() {
       hideAll();
       document.getElementById("pengumuman").classList.remove("hidden");
